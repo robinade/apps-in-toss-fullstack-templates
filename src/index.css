@@ -60,6 +60,11 @@
   }
 }
 
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
