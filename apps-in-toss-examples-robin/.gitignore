@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# SQLite database files
+data/
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Lock files (each example manages its own)
+package-lock.json
+
+# OMC/AI state (not needed in published repo)
+.omc/
+.serena/

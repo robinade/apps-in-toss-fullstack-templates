@@ -1,0 +1,392 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772980818961,
+  "projectRoot": "C:\\Users\\hpcra\\apps-in-toss-fullstack-templates",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "18.3.1",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18.3.1",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "5.4.19",
+        "category": "build"
+      },
+      {
+        "name": "vitest",
+        "version": "3.2.4",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "bun build",
+    "testCommand": "bun test",
+    "lintCommand": "bun lint",
+    "devCommand": "bun dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "build:dev": "vite build --mode development",
+      "lint": "eslint .",
+      "preview": "vite preview",
+      "test": "vitest run",
+      "test:watch": "vitest"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 2,
+      "lastAccessed": 1772980818250,
+      "keyFiles": []
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 3,
+      "lastAccessed": 1772980818267,
+      "keyFiles": [
+        "favicon.ico",
+        "placeholder.svg",
+        "robots.txt"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 5,
+      "lastAccessed": 1772980818269,
+      "keyFiles": [
+        "App.css",
+        "App.tsx",
+        "index.css",
+        "main.tsx",
+        "vite-env.d.ts"
+      ]
+    },
+    "src\\components": {
+      "path": "src\\components",
+      "purpose": "UI components",
+      "fileCount": 1,
+      "lastAccessed": 1772980818273,
+      "keyFiles": [
+        "NavLink.tsx"
+      ]
+    },
+    "src\\lib": {
+      "path": "src\\lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1772980818276,
+      "keyFiles": [
+        "utils.ts"
+      ]
+    },
+    "src\\pages": {
+      "path": "src\\pages",
+      "purpose": "Page components",
+      "fileCount": 2,
+      "lastAccessed": 1772980818277,
+      "keyFiles": [
+        "Index.tsx",
+        "NotFound.tsx"
+      ]
+    },
+    "src\\test": {
+      "path": "src\\test",
+      "purpose": "Test files",
+      "fileCount": 2,
+      "lastAccessed": 1772980818349,
+      "keyFiles": [
+        "example.test.ts",
+        "setup.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "package.json",
+      "accessCount": 20,
+      "lastAccessed": 1772986842730,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 13,
+      "lastAccessed": 1772986828351,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 6,
+      "lastAccessed": 1772983815059,
+      "type": "directory"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 4,
+      "lastAccessed": 1772983789331,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.ts",
+      "accessCount": 4,
+      "lastAccessed": 1772986462338,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-tds-mobile\\SKILL.md",
+      "accessCount": 3,
+      "lastAccessed": 1772981282410,
+      "type": "file"
+    },
+    {
+      "path": "docs\\토스공식문서.md",
+      "accessCount": 3,
+      "lastAccessed": 1772982765683,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-knowledge-appintoss-rules.md",
+      "accessCount": 3,
+      "lastAccessed": 1772984822448,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\ui\\calendar.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1772986662949,
+      "type": "file"
+    },
+    {
+      "path": "apps-in-toss-examples-robin\\CLAUDE.md",
+      "accessCount": 2,
+      "lastAccessed": 1772983815245,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-nongame-launch-checklist\\SKILL.md",
+      "accessCount": 2,
+      "lastAccessed": 1772984285816,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 2,
+      "lastAccessed": 1772985918578,
+      "type": "file"
+    },
+    {
+      "path": "src\\index.css",
+      "accessCount": 2,
+      "lastAccessed": 1772986483613,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 2,
+      "lastAccessed": 1772986676430,
+      "type": "directory"
+    },
+    {
+      "path": "src\\components\\ui\\command.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1772986797190,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\ui\\textarea.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1772986798169,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\tds-mobile\\SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1772980976733,
+      "type": "file"
+    },
+    {
+      "path": "apps-in-toss-examples-robin\\AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981260990,
+      "type": "file"
+    },
+    {
+      "path": "apps-in-toss-examples-robin\\README.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981261681,
+      "type": "file"
+    },
+    {
+      "path": "apps-in-toss-examples-robin\\llms.txt",
+      "accessCount": 1,
+      "lastAccessed": 1772981267362,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-login\\SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981271893,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-rewarded-ad\\SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981272550,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-promotion-reward\\SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981279813,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-banner-ad\\skill.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981280689,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-smart-message\\SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1772981281638,
+      "type": "file"
+    },
+    {
+      "path": "src\\App.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1772983543459,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1772983544037,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-nongame-launch-checklist\\references\\rejection-cases.md",
+      "accessCount": 1,
+      "lastAccessed": 1772984246945,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\skills\\appintoss-nongame-launch-checklist\\references\\external-link-rules.md",
+      "accessCount": 1,
+      "lastAccessed": 1772984247241,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 1,
+      "lastAccessed": 1772984349657,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\00-core-workflow.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985407081,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\01-slash-commands.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985424137,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\02-appintoss-compliance.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985458753,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\03-frontend-design.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985462663,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\04-work-style.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985473590,
+      "type": "file"
+    },
+    {
+      "path": "docs\\lovable-rules\\KNOWLEDGE-PASTE.md",
+      "accessCount": 1,
+      "lastAccessed": 1772985493251,
+      "type": "file"
+    },
+    {
+      "path": "apps-in-toss-examples-robin\\_template\\package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772985755788,
+      "type": "file"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772985918067,
+      "type": "file"
+    },
+    {
+      "path": "postcss.config.js",
+      "accessCount": 1,
+      "lastAccessed": 1772986404684,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

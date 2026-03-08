@@ -1,0 +1,58 @@
+# AppsInToss Examples (Robin Edition)
+
+> SDK 2.0.1 기반 WebView 미니앱 예제 모음 — 프로덕션 품질
+
+## Overview
+앱인토스(Toss Mini-App) 플랫폼용 WebView 예제 23개 + 풀스택 시나리오 6개.
+@apps-in-toss/web-framework 2.0.1, React 19.2.3, TypeScript, Tailwind CSS, Zustand.
+
+## Examples
+
+### Single-Feature (with-*)
+- with-env-detection: 실행 환경 감지 (web/toss/sandbox)
+- with-rewarded-ad: 보상형 광고 (load → show → reward)
+- with-interstitial-ad: 전면 광고
+- with-banner-ad: 배너 광고 (TossAds v2)
+- with-share-reward: 공유 바이럴 리워드
+- with-app-login: 토스 로그인
+- with-storage: 네이티브 스토리지
+- with-in-app-purchase: 인앱 결제
+- with-share-link: 딥링크 공유
+- with-contacts-viral: 연락처 바이럴
+- with-clipboard-text: 클립보드
+- with-haptic-feedback: 햅틱 피드백
+- with-platform-os: 플랫폼 감지
+- with-network-status: 네트워크 상태
+- with-locale: 언어/지역 설정
+- with-location-once: 위치 (1회)
+- with-location-tracking: 위치 추적
+- with-camera: 카메라 촬영
+- with-album-photos: 앨범 사진
+- with-navigation-bar: 네비게이션바
+- with-back-event: 뒤로가기 이벤트
+- with-permission: 권한 요청
+- with-push-notification: 푸시 알림
+
+### Fullstack Scenarios (scenario-*)
+- scenario-attendance-reward: 출석 체크 + 보상형 광고 + 캘린더 UI
+- scenario-lottery-reward: 복권 뽑기 + 보상형 광고 + 프로모션 리워드
+- scenario-mission-system: 미션 + 진행도 + 보상 수령
+- scenario-share-viral: 공유 바이럴 + 일일 제한 + 리워드
+- scenario-milestone-withdraw: 마일스톤 + 포인트 출금
+- scenario-onboarding-coach: 온보딩 + 코치마크 오버레이
+
+## Key SDK APIs
+- getOperationalEnvironment(): 실행 환경 감지
+- loadFullScreenAd() / showFullScreenAd(): 전면/보상형 광고
+- TossAds.initialize() / TossAds.attachBanner(): 배너 광고
+- contactsViral(): 친구 공유 바이럴
+- appLogin(): 토스 로그인
+- Storage.*: 네이티브 스토리지
+- executePromotion(): 프로모션 리워드 지급
+
+## Links
+- SDK Docs: https://developers-apps-in-toss.toss.im/llms.txt
+- SDK Full Docs: https://developers-apps-in-toss.toss.im/llms-full.txt
+- 광고 개발가이드: https://developers-apps-in-toss.toss.im/ads/develop.html
+- 프로모션 개발가이드: https://developers-apps-in-toss.toss.im/promotion/develop.html
+- 공유리워드: https://developers-apps-in-toss.toss.im/bedrock/reference/framework/친구초대/contactsViral.html

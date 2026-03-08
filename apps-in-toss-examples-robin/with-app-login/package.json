@@ -1,0 +1,25 @@
+{
+  "name": "with-app-login",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "ait dev",
+    "build": "ait build",
+    "preview": "ait preview"
+  },
+  "dependencies": {
+    "@apps-in-toss/web-framework": "2.0.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.3",
+    "@types/react-dom": "19.2.3",
+    "typescript": "^5.8.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0"
+  }
+}

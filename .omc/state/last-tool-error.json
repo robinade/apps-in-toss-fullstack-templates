@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"npm run lint 2>&1\",\"timeout\":60000,\"description\":\"Run linter\"}",
+  "error": "Exit code 1\n\n> vite_react_shadcn_ts@0.0.0 lint\n> eslint .\n\n\nC:\\Users\\hpcra\\apps-in-toss-fullstack-templates\\apps-in-toss-examples-robin\\scenario-onboarding-coach\\client\\src\\App.tsx\n  23:6  warning  React Hook useEffect has a missing dependency: 'coachMarks'. Either include it or remove the dependency array  react-hooks/exhaustive-deps\n\nC:\\Users\\hpcra\\apps-in-toss-fullstack-templates\\src\\components\\ui\\badge.tsx\n  29:17  warning  Fast refresh only works when a file only exports components. Use a n...",
+  "timestamp": "2026-03-08T16:19:48.285Z",
+  "retry_count": 1
+}

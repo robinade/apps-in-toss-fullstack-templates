@@ -1,0 +1,11 @@
+{"t":0,"agent":"ab14ae8","agent_type":"deep-research-agent","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a19753d","agent_type":"voltagent-research:search-specialist","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a8d88d3","agent_type":"voltagent-research:research-analyst","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a7d7af9","agent_type":"voltagent-research:trend-analyst","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"ab38a13","agent_type":"voltagent-research:competitive-analyst","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a19753d","agent_type":"voltagent-research:search-specialist","event":"agent_stop","success":true,"duration_ms":95879}
+{"t":0,"agent":"ab38a13","agent_type":"voltagent-research:competitive-analyst","event":"agent_stop","success":true,"duration_ms":102294}
+{"t":0,"agent":"a7d7af9","agent_type":"voltagent-research:trend-analyst","event":"agent_stop","success":true,"duration_ms":143819}
+{"t":0,"agent":"a8d88d3","agent_type":"voltagent-research:research-analyst","event":"agent_stop","success":true,"duration_ms":199544}
+{"t":0,"agent":"ab14ae8","agent_type":"deep-research-agent","event":"agent_stop","success":true,"duration_ms":269645}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}

@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  typecheck-single:
+    name: Typecheck (Single-Feature)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - _template
+          - with-env-detection
+          - with-rewarded-ad
+          - with-interstitial-ad
+          - with-banner-ad
+          - with-share-reward
+          - with-app-login
+          - with-storage
+          - with-in-app-purchase
+          - with-share-link
+          - with-contacts-viral
+          - with-clipboard-text
+          - with-haptic-feedback
+          - with-platform-os
+          - with-network-status
+          - with-locale
+          - with-location-once
+          - with-location-tracking
+          - with-camera
+          - with-album-photos
+          - with-navigation-bar
+          - with-back-event
+          - with-permission
+          - with-push-notification
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install & Typecheck
+        run: |
+          cd ${{ matrix.example }}
+          npm install
+          npx tsc --noEmit
+
+  typecheck-scenario:
+    name: Typecheck (Scenario)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - scenario-share-viral
+          - scenario-onboarding-coach
+          - scenario-mission-system
+          - scenario-attendance-reward
+          - scenario-lottery-reward
+          - scenario-milestone-withdraw
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install & Typecheck Client
+        run: |
+          cd ${{ matrix.example }}/client
+          npm install
+          npx tsc --noEmit
+      - name: Install & Typecheck Server
+        run: |
+          cd ${{ matrix.example }}/server
+          npm install
+          npx tsc --noEmit

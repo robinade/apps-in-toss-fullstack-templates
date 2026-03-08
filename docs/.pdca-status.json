@@ -1,0 +1,73 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-03-08T16:19:57.836Z",
+  "activeFeatures": [
+    "apps-in-toss-fullstack-templates",
+    "ui"
+  ],
+  "primaryFeature": "apps-in-toss-fullstack-templates",
+  "features": {
+    "apps-in-toss-fullstack-templates": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-08T16:14:21.988Z",
+        "lastUpdated": "2026-03-08T16:14:21.988Z"
+      },
+      "lastFile": "C:\\Users\\hpcra\\apps-in-toss-fullstack-templates\\vite.config.ts"
+    },
+    "ui": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-08T16:17:42.661Z",
+        "lastUpdated": "2026-03-08T16:19:57.836Z"
+      },
+      "lastFile": "C:\\Users\\hpcra\\apps-in-toss-fullstack-templates\\src\\components\\ui\\textarea.tsx"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-03-08T14:40:18.061Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-03-08T16:19:57.836Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-03-08T16:14:21.988Z",
+      "feature": "apps-in-toss-fullstack-templates",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-08T16:17:42.661Z",
+      "feature": "ui",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-08T16:19:56.862Z",
+      "feature": "ui",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-08T16:19:57.836Z",
+      "feature": "ui",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}

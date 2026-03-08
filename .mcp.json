@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "appintoss-docs": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "AppsInToss:https://developers-apps-in-toss.toss.im/llms.txt",
+        "AppsInTossFull:https://developers-apps-in-toss.toss.im/llms-full.txt",
+        "TDS-Mobile:https://tossmini-docs.toss.im/tds-mobile/llms-full.txt",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}

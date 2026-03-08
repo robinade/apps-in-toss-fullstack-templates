@@ -1,0 +1,28 @@
+{
+  "output": {
+    "filePath": "repomix-output.xml",
+    "style": "xml"
+  },
+  "include": [
+    "_template/**",
+    "_scenario-template/**",
+    "with-*/**",
+    "scenario-*/**",
+    "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "llms.txt"
+  ],
+  "ignore": {
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "node_modules",
+      "dist",
+      "data",
+      "*.lock",
+      "*.db",
+      ".DS_Store",
+      "tds-mobile"
+    ]
+  }
+}

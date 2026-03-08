@@ -1,0 +1,13 @@
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
+{"t":0,"agent":"a24351d","agent_type":"deep-research-agent","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"ad0cc6c","agent_type":"voltagent-research:search-specialist","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a24351d","agent_type":"deep-research-agent","event":"agent_stop","success":true,"duration_ms":170726}
+{"t":0,"agent":"ad0cc6c","agent_type":"voltagent-research:search-specialist","event":"agent_stop","success":true,"duration_ms":178454}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrathink"}
