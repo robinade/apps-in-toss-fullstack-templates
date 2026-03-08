@@ -100,6 +100,19 @@
 
     --radius: 0.5rem;
 
+    --block-env: 217 91% 60%;
+    --block-env-bg: 214 95% 93%;
+    --block-auth: 142 71% 45%;
+    --block-auth-bg: 138 76% 90%;
+    --block-ads: 38 92% 50%;
+    --block-ads-bg: 48 96% 89%;
+    --block-viral: 330 81% 60%;
+    --block-viral-bg: 326 78% 92%;
+    --block-media: 262 83% 58%;
+    --block-media-bg: 263 70% 92%;
+    --block-ui: 186 94% 41%;
+    --block-ui-bg: 185 96% 90%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
