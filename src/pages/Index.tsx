@@ -5,6 +5,9 @@ import {
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
   Megaphone, Share2, Camera, Navigation, Sparkles,
   ExternalLink, Zap, BookOpen, ChevronRight, ArrowRight,
+  LogIn, BarChart3, Gift, ClipboardCheck, MessageSquare, Palette,
+  Cog, PlayCircle, CheckCircle2, Bug, FileText, Wand2,
+  Brain, Video, Database, Globe2, PenTool, Eye,
 } from "lucide-react";
 import heroBgShape from "@/assets/hero-bg-shape.png";
 import logo from "@/assets/logo.png";
