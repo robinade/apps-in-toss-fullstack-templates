@@ -317,9 +317,9 @@ const Index = () => {
                 { icon: <Globe className="w-5 h-5" />, label: "개발자 센터", href: "https://developers-apps-in-toss.toss.im" },
                 { icon: <User className="w-5 h-5" />, label: "Contact", href: "https://www.threads.com/@robin_just_ship_it" },
               ].map((item) => (
-                <button key={item.label} className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
                   {item.icon} <span className="tracking-wide">{item.label}</span>
-                </button>
+                </a>
               ))}
             </motion.div>
           )}
