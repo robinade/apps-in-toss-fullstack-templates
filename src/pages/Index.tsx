@@ -217,25 +217,19 @@ function BlockCard({ block }: { block: SDKBlock }) {
         <div>
           <div className="mb-2 flex items-center gap-1.5" style={{ color: c.color }}>
             {c.icon}
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-70">{c.label}</span>
+            <span className="text-xscase tracking-[0.15em] opacity-70">{c.label}</span>
           </div>
 
           <p className={`font-black leading-tight ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`} style={{ color: c.color }}>
             {block.name}
           </p>
 
-          <code className={`mt-2 block font-mono text-foreground/25 truncate ${isLg ? "text-xs" : "text-[10px]"}`}>
-            {block.api}
-          </code>
-        </div>
-
-        {(isLg || isTall) && (
-          <div className="mt-4 flex items-center gap-2">
+          <code className={`mt"mt-"mt-"mt-"mt-2 block font-mono text-xs text-foreground/25 truncate"className="mt-4 flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-lg bg-foreground/[0.06] px-2.5 py-1">
               <BookOpen className="h-3 w-3 text-foreground/25" />
-              <span className="font-mono text-[10px] text-foreground/30">{block.dir}</span>
+              <span className="font-mono text-[10px] text-foreground/30">{block.xsspan>
             </div>
-            <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
+       xsChevronRight className="h-3.5 w-xsacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
           </div>
         )}
       </div>
@@ -261,7 +255,7 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
           {uniqueBlocks.map((cat, i) => (
             <span key={i} className={`h-2.5 w-2.5 rounded-full ${CAT[cat].dot} ring-2 ring-background`} />
           ))}
-          <span className="ml-0.5 text-[10px] font-medium text-muted-foreground">
+          <span className="ml-0.5 text-xs font-medium text-muted-foreground">
             {uniqueBlocks.map((ct) => CAT[ct].label.split(" ")[0]).join(" + ")}
           </span>
         </div>
@@ -427,7 +421,7 @@ const Index = () => {
 
       {/* ▸ HARNESS WORKFLOW — 7 steps */}
       <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
-        <motion.h2 variants={fadeUp} className="mb-3 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+        <motion.h2 variants={fadeUp} className="mb-3 text-[10px] font-[family-name:var(--font-displaxsnt-black uppercase tracking-[0.3em] text-muted-foreground">
           Harness Engineering
         </motion.h2>
         <motion.p variants={fadeUp} className="mb-10 text-lg text-muted-foreground max-w-2xl">
@@ -442,12 +436,12 @@ const Index = () => {
             { icon: <Rocket className="h-5 w-5" />, title: "점진적 구현", num: "05" },
             { icon: <Search className="h-5 w-5" />, title: "검증 루프", num: "06" },
             { icon: <Sparkles className="h-5 w-5" />, title: "최종 심사", num: "07" },
-          ].map((item) => (
+          ].map((item, idx, arr) => (
             <motion.div
               key={item.num}
               variants={fadeUp}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20"
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20 ${idx === arr.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
             >
               <span className="absolute top-1 right-2 font-[family-name:var(--font-display)] text-3xl font-black text-foreground/[0.04] select-none">
                 {item.num}
@@ -467,14 +461,14 @@ const Index = () => {
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8" id="blocks">
         <motion.div variants={fadeUp} className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
+            <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
             <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground sm:text-4xl">
               {SDK_BLOCKS.length} Blocks
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(CAT) as Category[]).map((cat) => (
-              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
                 <span className={`h-1.5 w-1.5 rounded-full ${CAT[cat].dot}`} />
                 <span className="text-muted-foreground">{CAT[cat].label}</span>
               </span>
@@ -495,7 +489,22 @@ const Index = () => {
       {/* ▸ SCENARIOS */}
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
         <motion.div variants={fadeUp} className="mb-6">
-          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
+          <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Fullstack Scenarios</h2>
+          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
+            {SCENARIOS.length} Recipes
+          </p>
+        </motion.div>
+        <motion.div variants={stagger} className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {SCENARIOS.map((s) => (
+            <ScenarioCard key={s.name} scenario={s} />
+          ))}
+        </motion.div>
+      </Section>
+
+      {/* ▸ AI SKILLS */}
+      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
+        <motion.div variants={fadeUp} className="mb-6">
+          <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
           <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
             <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
             {SKILLS.length} Commands
@@ -508,7 +517,7 @@ const Index = () => {
             const c = SKILL_CAT[cat];
             const count = SKILLS.filter((s) => s.cat === cat).length;
             return (
-              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
                 <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
                 <span className="text-muted-foreground">{c.label}</span>
                 <span className="text-muted-foreground/40">({count})</span>
@@ -523,7 +532,7 @@ const Index = () => {
           const catSkills = SKILLS.filter((s) => s.cat === cat);
           return (
             <div key={cat} className="mb-5 last:mb-0">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
                 <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
                 {c.label}
               </p>
@@ -541,10 +550,10 @@ const Index = () => {
                       </div>
                       <div className="min-w-0">
                         <code className="text-xs font-bold text-foreground block truncate">/{sk.name}</code>
-                        <span className="text-[10px] text-muted-foreground/60">{sk.desc}</span>
+                        <span className="text-xs text-muted-foreground/60">{sk.desc}</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
+                    <span className="hidden sm:inline text-xs font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -556,7 +565,7 @@ const Index = () => {
       {/* ▸ FOOTER */}
       <footer className="border-t border-border bg-card/30">
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-          <p className="mb-6 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Documentation</p>
+          <p className="mb-6 text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Documentation</p>
           <div className="flex flex-wrap gap-2.5">
             {DOC_LINKS.map((d) => (
               <a
@@ -571,8 +580,9 @@ const Index = () => {
               </a>
             ))}
           </div>
-          <p className="mt-12 text-center text-[11px] text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
-            AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6
+          <p className="mt-12 text-center text-xs text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
+            <span className="hidden sm:inline">AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6</span>
+            <span className="sm:hidden">AppsInToss · SDK 2.0.1<br />Granite 1.0+ · React 19 · Vite 6</span>
           </p>
         </div>
       </footer>
