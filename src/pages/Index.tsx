@@ -255,7 +255,8 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
           {uniqueBlocks.map((cat, i) => (
             <span key={i} className={`h-2.5 w-2.5 rounded-full ${CAT[cat].dot} ring-2 ring-background`} />
           ))}
-          <span className="ml-0.5 text-[10px] font-medium text-muted-foregrouxs           {uniqueBlocks.map((ct) =>xst].label.split(" ")[0]).join(" + ")}
+          <span className="ml-0.5 text-xs font-medium text-muted-foreground">
+            {uniqueBlocks.map((ct) => CAT[ct].label.split(" ")[0]).join(" + ")}
           </span>
         </div>
       </div>
