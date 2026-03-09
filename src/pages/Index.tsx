@@ -524,7 +524,7 @@ const Index = () => {
             ))}
           </div>
           <p className="mt-12 text-center text-[11px] text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
-            AppsInToss SDK Templates · Granite 1.0+
+            AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6
           </p>
         </div>
       </footer>
