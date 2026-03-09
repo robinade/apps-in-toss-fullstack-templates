@@ -90,10 +90,16 @@ const SKILLS = [
 ];
 
 const DOC_LINKS = [
+  { label: "개발자 센터", url: "https://developers-apps-in-toss.toss.im" },
   { label: "SDK Overview", url: "https://developers-apps-in-toss.toss.im/llms.txt" },
+  { label: "SDK Full Docs", url: "https://developers-apps-in-toss.toss.im/llms-full.txt" },
   { label: "광고 가이드", url: "https://developers-apps-in-toss.toss.im/ads/develop.html" },
   { label: "프로모션", url: "https://developers-apps-in-toss.toss.im/promotion/develop.html" },
   { label: "로그인", url: "https://developers-apps-in-toss.toss.im/login/develop.html" },
+  { label: "공유리워드", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/친구초대/contactsViral.html" },
+  { label: "인앱결제", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/인앱결제/IAP.html" },
+  { label: "권한", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/권한/permission.html" },
+  { label: "네비게이션바", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/UI/NavigationBar.html" },
   { label: "TDS Mobile", url: "https://tossmini-docs.toss.im/tds-mobile" },
 ];
 
