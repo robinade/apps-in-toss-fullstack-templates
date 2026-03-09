@@ -217,22 +217,21 @@ function BlockCard({ block }: { block: SDKBlock }) {
         <div>
           <div className="mb-2 flex items-center gap-1.5" style={{ color: c.color }}>
             {c.icon}
-            <span className="text-xst-bold uppercase tracking-[0.15em] opacity-70">{c.label}</span>
+            <span className="text-xsld uppercase tracking-[0.15em] opacity-70">{c.label}</span>
           </div>
 
           <p className={`font-black leading-tight ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`} style={{ color: c.color }}>
             {block.name}
           </p>
 
-          <code className={`mt"mt-2 block font-mono text-xs text-foreground/25 truncate"          {block.api}
-          </code>
+          <code className={`mt"mt-"mt-2 block font-mono text-xs text-foreground/25 truncate"code>
         </div>
 
         {(isLg || isTall) && (
           <div className="mt-4 flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-lg bg-foreground/[0.06] px-2.5 py-1">
               <BookOpen className="h-3 w-3 text-foreground/25" />
-              <span className="font-mono text-[10px] text-foreground/30">{block.dir}</span>
+              <span className="font-mono text-[10px] text-foreground/30">{block.xsspan>
             </div>
             <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
           </div>
