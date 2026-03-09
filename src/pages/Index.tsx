@@ -217,23 +217,20 @@ function BlockCard({ block }: { block: SDKBlock }) {
         <div>
           <div className="mb-2 flex items-center gap-1.5" style={{ color: c.color }}>
             {c.icon}
-            <span className="text-xsld uppercase tracking-[0.15em] opacity-70">{c.label}</span>
+            <span className="text-xsppercase tracking-[0.15em] opacity-70">{c.label}</span>
           </div>
 
           <p className={`font-black leading-tight ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`} style={{ color: c.color }}>
             {block.name}
           </p>
 
-          <code className={`mt"mt-"mt-2 block font-mono text-xs text-foreground/25 truncate"code>
-        </div>
-
-        {(isLg || isTall) && (
+          <code className={`mt"mt-"mt-"mt-2 block font-mono text-xs text-foreground/25 truncate"Lg || isTall) && (
           <div className="mt-4 flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-lg bg-foreground/[0.06] px-2.5 py-1">
               <BookOpen className="h-3 w-3 text-foreground/25" />
               <span className="font-mono text-[10px] text-foreground/30">{block.xsspan>
             </div>
-            <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
+       xsChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
           </div>
         )}
       </div>
@@ -259,8 +256,7 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
           {uniqueBlocks.map((cat, i) => (
             <span key={i} className={`h-2.5 w-2.5 rounded-full ${CAT[cat].dot} ring-2 ring-background`} />
           ))}
-          <span className="ml-0.5 text-[10px] font-medium text-muted-foreground">
-            {uniqueBlocks.map((ct) => CAT[ct].label.split(" ")[0]).join(" + ")}
+          <span className="ml-0.5 text-[10px] font-medium text-muted-foregrouxs           {uniqueBlocks.map((ct) => CAT[ct].label.split(" ")[0]).join(" + ")}
           </span>
         </div>
       </div>
