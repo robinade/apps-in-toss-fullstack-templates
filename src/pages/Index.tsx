@@ -278,12 +278,12 @@ const Index = () => {
               <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
                 <ShoppingCart className="w-7 h-7" />
               </button>
-              <div className="bg-primary rounded-full flex items-center gap-4 pl-2 pr-7 text-primary-foreground h-[5.5rem]">
+              <a href="https://www.threads.com/@robin_just_ship_it" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full flex items-center gap-4 pl-2 pr-7 text-primary-foreground h-[5.5rem] hover:opacity-80 transition-opacity">
                 <div className="w-14 h-14 rounded-full bg-primary-foreground flex items-center justify-center text-primary">
                   <User className="w-7 h-7" />
                 </div>
                 <span className="text-lg font-medium tracking-wide">Contact</span>
-              </div>
+              </a>
             </motion.div>
 
             {/* Mobile hamburger */}
