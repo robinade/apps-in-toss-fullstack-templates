@@ -282,12 +282,12 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="hidden md:flex items-center gap-3 -mt-1 -mr-2"
             >
-              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
-                <Search className="w-7 h-7" />
-              </button>
-              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
-                <ShoppingCart className="w-7 h-7" />
-              </button>
+              <a href="https://github.com/user/apps-in-toss-fullstack-templates" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <Github className="w-7 h-7" />
+              </a>
+              <a href="https://developers-apps-in-toss.toss.im" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <Globe className="w-7 h-7" />
+              </a>
               <a href="https://www.threads.com/@robin_just_ship_it" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full flex items-center gap-4 pl-2 pr-7 text-primary-foreground h-[5.5rem] hover:opacity-80 transition-opacity">
                 <div className="w-14 h-14 rounded-full bg-primary-foreground flex items-center justify-center text-primary">
                   <User className="w-7 h-7" />
