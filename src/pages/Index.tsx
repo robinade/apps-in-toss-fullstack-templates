@@ -494,49 +494,63 @@ const Index = () => {
 
       {/* ▸ SCENARIOS */}
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-10">
-          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Fullstack Scenarios</h2>
-          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
-            {SCENARIOS.length} Recipes
-          </p>
-        </motion.div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SCENARIOS.map((s) => (
-            <ScenarioCard key={s.name} scenario={s} />
-          ))}
-        </div>
-      </Section>
-
-      {/* ▸ AI SKILLS */}
-      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-10">
+        <motion.div variants={fadeUp} className="mb-6">
           <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
           <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
             <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
             {SKILLS.length} Commands
           </p>
         </motion.div>
-        <motion.div variants={stagger} className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-          {SKILLS.map((sk) => (
-            <motion.div
-              key={sk.name}
-              variants={fadeUp}
-              whileHover={{ x: 6, transition: { duration: 0.15 } }}
-              className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 transition-all hover:border-foreground/20"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-foreground/10">
-                  <Zap className="h-3.5 w-3.5 text-foreground/50" />
-                </div>
-                <div className="min-w-0">
-                  <code className="text-sm font-bold text-foreground block truncate">/{sk.name}</code>
-                  <span className="text-[10px] text-muted-foreground/60">{(sk as any).desc}</span>
-                </div>
-              </div>
-              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0">{sk.trigger}</span>
-            </motion.div>
-          ))}
+
+        {/* Category legend */}
+        <motion.div variants={fadeUp} className="mb-6 flex flex-wrap gap-2">
+          {(Object.keys(SKILL_CAT) as SkillCategory[]).map((cat) => {
+            const c = SKILL_CAT[cat];
+            const count = SKILLS.filter((s) => s.cat === cat).length;
+            return (
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+                <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
+                <span className="text-muted-foreground">{c.label}</span>
+                <span className="text-muted-foreground/40">({count})</span>
+              </span>
+            );
+          })}
         </motion.div>
+
+        {/* Skills grouped by category */}
+        {(Object.keys(SKILL_CAT) as SkillCategory[]).map((cat) => {
+          const c = SKILL_CAT[cat];
+          const catSkills = SKILLS.filter((s) => s.cat === cat);
+          return (
+            <div key={cat} className="mb-5 last:mb-0">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
+                <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
+                {c.label}
+              </p>
+              <motion.div variants={stagger} className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {catSkills.map((sk) => (
+                  <motion.div
+                    key={sk.name}
+                    variants={fadeUp}
+                    whileHover={{ x: 6, transition: { duration: 0.15 } }}
+                    className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-all hover:border-foreground/20"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ background: `${c.color.replace("hsl", "hsla").replace(")", " / 0.15)")}`, color: c.color }}>
+                        {sk.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <code className="text-xs font-bold text-foreground block truncate">/{sk.name}</code>
+                        <span className="text-[10px] text-muted-foreground/60">{sk.desc}</span>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          );
+        })}
       </Section>
 
       {/* ▸ FOOTER */}
