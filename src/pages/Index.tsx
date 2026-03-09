@@ -1,11 +1,13 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
+  Search, ShoppingCart, User, Menu, X,
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
   Megaphone, Share2, Camera, Navigation, Sparkles,
-  ExternalLink, Zap, BookOpen, ArrowDown, ChevronRight,
+  ExternalLink, Zap, BookOpen, ChevronRight, ArrowRight,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import heroBgShape from "@/assets/hero-bg-shape.png";
+import logo from "@/assets/logo.png";
 
 /* ─── Types & Data ─── */
 
@@ -21,62 +23,14 @@ interface SDKBlock {
 
 const CAT: Record<Category, {
   label: string; icon: React.ReactNode;
-  fg: string; bg: string; dot: string; glow: string; border: string;
+  color: string; dot: string;
 }> = {
-  env: {
-    label: "환경 & 플랫폼",
-    icon: <Monitor className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-env))]",
-    bg: "bg-[hsl(var(--block-env-bg))]",
-    dot: "bg-[hsl(var(--block-env))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-env)/.18)]",
-    border: "border-[hsl(var(--block-env)/.25)]",
-  },
-  auth: {
-    label: "인증 & 스토리지",
-    icon: <ShieldCheck className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-auth))]",
-    bg: "bg-[hsl(var(--block-auth-bg))]",
-    dot: "bg-[hsl(var(--block-auth))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-auth)/.18)]",
-    border: "border-[hsl(var(--block-auth)/.25)]",
-  },
-  ads: {
-    label: "광고 & 수익화",
-    icon: <Megaphone className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-ads))]",
-    bg: "bg-[hsl(var(--block-ads-bg))]",
-    dot: "bg-[hsl(var(--block-ads))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-ads)/.18)]",
-    border: "border-[hsl(var(--block-ads)/.25)]",
-  },
-  viral: {
-    label: "바이럴 & 공유",
-    icon: <Share2 className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-viral))]",
-    bg: "bg-[hsl(var(--block-viral-bg))]",
-    dot: "bg-[hsl(var(--block-viral))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-viral)/.18)]",
-    border: "border-[hsl(var(--block-viral)/.25)]",
-  },
-  media: {
-    label: "미디어 & 디바이스",
-    icon: <Camera className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-media))]",
-    bg: "bg-[hsl(var(--block-media-bg))]",
-    dot: "bg-[hsl(var(--block-media))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-media)/.18)]",
-    border: "border-[hsl(var(--block-media)/.25)]",
-  },
-  ui: {
-    label: "UI & 네비게이션",
-    icon: <Navigation className="h-4 w-4" />,
-    fg: "text-[hsl(var(--block-ui))]",
-    bg: "bg-[hsl(var(--block-ui-bg))]",
-    dot: "bg-[hsl(var(--block-ui))]",
-    glow: "shadow-[0_0_30px_hsl(var(--block-ui)/.18)]",
-    border: "border-[hsl(var(--block-ui)/.25)]",
-  },
+  env: { label: "환경 & 플랫폼", icon: <Monitor className="h-4 w-4" />, color: "hsl(217 91% 60%)", dot: "bg-[hsl(217_91%_60%)]" },
+  auth: { label: "인증 & 스토리지", icon: <ShieldCheck className="h-4 w-4" />, color: "hsl(160 84% 39%)", dot: "bg-[hsl(160_84%_39%)]" },
+  ads: { label: "광고 & 수익화", icon: <Megaphone className="h-4 w-4" />, color: "hsl(32 95% 52%)", dot: "bg-[hsl(32_95%_52%)]" },
+  viral: { label: "바이럴 & 공유", icon: <Share2 className="h-4 w-4" />, color: "hsl(340 82% 58%)", dot: "bg-[hsl(340_82%_58%)]" },
+  media: { label: "미디어 & 디바이스", icon: <Camera className="h-4 w-4" />, color: "hsl(270 76% 56%)", dot: "bg-[hsl(270_76%_56%)]" },
+  ui: { label: "UI & 네비게이션", icon: <Navigation className="h-4 w-4" />, color: "hsl(186 94% 41%)", dot: "bg-[hsl(186_94%_41%)]" },
 };
 
 const SDK_BLOCKS: SDKBlock[] = [
@@ -143,43 +97,58 @@ const DOC_LINKS = [
 
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.06 } },
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.88 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, scale: 0.92 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.section
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      variants={stagger}
-      className={className}
-    >
+    <motion.section ref={ref} initial="hidden" animate={inView ? "show" : "hidden"} variants={stagger} className={className}>
       {children}
     </motion.section>
   );
 }
 
-/* ─── Sub-components ─── */
+/* ─── Product Pin (SDK block floating callout) ─── */
 
-/** Noise overlay for tactile texture */
-const NoiseOverlay = () => (
-  <div className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{
-    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-  }} />
-);
+function SDKPin({ block, position, direction = "right" }: {
+  block: { name: string; api: string };
+  position: string;
+  direction?: "left" | "right";
+}) {
+  const content = (
+    <div>
+      <p className="text-primary-foreground text-sm tracking-[0.15em] font-medium">{block.name}</p>
+      <p className="text-primary-foreground/60 text-sm mt-0.5 font-mono">{block.api}</p>
+    </div>
+  );
+  const line = <div className="w-16 h-px bg-primary-foreground/30" />;
+  const circle = <div className="w-2.5 h-2.5 rounded-full border-2 border-primary-foreground/50 animate-[pulse-dot_2s_ease-in-out_infinite]" />;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5, duration: 0.8 }}
+      className={`hidden md:flex absolute items-center gap-3 z-10 ${position}`}
+    >
+      {direction === "left" ? <>{content}{line}{circle}</> : <>{circle}{line}{content}</>}
+    </motion.div>
+  );
+}
+
+/* ─── Block Card ─── */
 
 function BlockCard({ block }: { block: SDKBlock }) {
   const c = CAT[block.category];
@@ -187,39 +156,31 @@ function BlockCard({ block }: { block: SDKBlock }) {
   const isWide = block.size === "wide";
   const isTall = block.size === "tall";
 
-  const sizeClass = isLg
-    ? "col-span-2 row-span-2"
-    : isWide
-      ? "col-span-2"
-      : isTall
-        ? "row-span-2"
-        : "";
+  const sizeClass = isLg ? "col-span-2 row-span-2" : isWide ? "col-span-2" : isTall ? "row-span-2" : "";
 
   return (
     <motion.div
       variants={scaleIn}
-      whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
-      className={`group relative overflow-hidden rounded-2xl border ${c.border} ${c.bg} ${c.glow} transition-all duration-300 ${sizeClass} ${isLg ? "p-6" : "p-4"}`}
+      whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 ${sizeClass} ${isLg ? "p-6" : "p-4"}`}
+      style={{ boxShadow: `0 0 30px ${c.color.replace("hsl", "hsla").replace(")", " / 0.1)")}` }}
     >
-      <NoiseOverlay />
-
-      {/* Decorative gradient corner for featured cards */}
       {(isLg || isTall) && (
-        <div className={`absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-20 blur-[40px] ${c.dot}`} />
+        <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-15 blur-[40px]" style={{ background: c.color }} />
       )}
 
       <div className={`relative z-10 flex h-full flex-col ${isLg ? "justify-between" : ""}`}>
         <div>
-          <div className={`mb-2 flex items-center gap-1.5 ${c.fg}`}>
+          <div className="mb-2 flex items-center gap-1.5" style={{ color: c.color }}>
             {c.icon}
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-70">{c.label}</span>
           </div>
 
-          <p className={`font-black leading-tight ${c.fg} ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`}>
+          <p className={`font-black leading-tight ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`} style={{ color: c.color }}>
             {block.name}
           </p>
 
-          <code className={`mt-2 block font-mono text-foreground/35 truncate ${isLg ? "text-xs" : "text-[10px]"}`}>
+          <code className={`mt-2 block font-mono text-foreground/25 truncate ${isLg ? "text-xs" : "text-[10px]"}`}>
             {block.api}
           </code>
         </div>
@@ -227,18 +188,10 @@ function BlockCard({ block }: { block: SDKBlock }) {
         {(isLg || isTall) && (
           <div className="mt-4 flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-lg bg-foreground/[0.06] px-2.5 py-1">
-              <BookOpen className="h-3 w-3 text-foreground/30" />
-              <span className="font-mono text-[10px] text-foreground/40">{block.dir}</span>
+              <BookOpen className="h-3 w-3 text-foreground/25" />
+              <span className="font-mono text-[10px] text-foreground/30">{block.dir}</span>
             </div>
-            <ChevronRight className={`h-3.5 w-3.5 ${c.fg} opacity-0 -translate-x-1 transition-all group-hover:opacity-60 group-hover:translate-x-0`} />
-          </div>
-        )}
-
-        {isLg && (
-          <div className="mt-3 flex items-center gap-1.5">
-            <span className={`inline-block h-1.5 w-8 rounded-full ${c.dot} opacity-60`} />
-            <span className={`inline-block h-1.5 w-4 rounded-full ${c.dot} opacity-30`} />
-            <span className={`inline-block h-1.5 w-2 rounded-full ${c.dot} opacity-15`} />
+            <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-40 group-hover:translate-x-0" style={{ color: c.color }} />
           </div>
         )}
       </div>
@@ -246,25 +199,26 @@ function BlockCard({ block }: { block: SDKBlock }) {
   );
 }
 
+/* ─── Scenario Card ─── */
+
 function ScenarioCard({ scenario }: { scenario: Scenario }) {
   const uniqueBlocks = [...new Set(scenario.blocks)];
   return (
     <motion.div
       variants={fadeUp}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group relative overflow-hidden rounded-2xl border border-border/40 bg-card p-5 transition-all hover:shadow-xl hover:shadow-primary/5"
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:border-foreground/20"
     >
-      <NoiseOverlay />
       <div className="relative z-10">
         <span className="text-3xl">{scenario.emoji}</span>
-        <h4 className="mt-2.5 text-sm font-black text-foreground">{scenario.name}</h4>
+        <h4 className="mt-2.5 text-sm font-black text-foreground font-[family-name:var(--font-display)]">{scenario.name}</h4>
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{scenario.desc}</p>
         <div className="mt-3 flex items-center gap-2">
           {uniqueBlocks.map((cat, i) => (
             <span key={i} className={`h-2.5 w-2.5 rounded-full ${CAT[cat].dot} ring-2 ring-background`} />
           ))}
           <span className="ml-0.5 text-[10px] font-medium text-muted-foreground">
-            {uniqueBlocks.map((c) => CAT[c].label.split(" ")[0]).join(" + ")}
+            {uniqueBlocks.map((ct) => CAT[ct].label.split(" ")[0]).join(" + ")}
           </span>
         </div>
       </div>
@@ -275,65 +229,162 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
 /* ─── Main Page ─── */
 
 const Index = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
 
-      {/* ▸ HERO */}
-      <Section className="relative px-5 pt-20 pb-14 sm:px-8 sm:pt-32 sm:pb-24">
-        {/* Dual gradient orbs */}
-        <div className="pointer-events-none absolute top-0 left-1/3 -translate-x-1/2 h-[600px] w-[800px] rounded-full opacity-30 blur-[120px]"
-          style={{ background: `radial-gradient(ellipse, hsl(var(--hero-gradient-from)) 0%, transparent 70%)` }}
-        />
-        <div className="pointer-events-none absolute top-20 right-0 h-[400px] w-[500px] rounded-full opacity-15 blur-[100px]"
-          style={{ background: `radial-gradient(ellipse, hsl(var(--hero-gradient-to)) 0%, transparent 70%)` }}
-        />
+      {/* ▸ HERO — Full-screen video with masked background */}
+      <section className="relative h-screen bg-background overflow-hidden">
+        {/* Masked video layer */}
+        <div
+          className="absolute inset-0 md:ml-[4px] z-0 hero-mask"
+          style={{ '--hero-mask': `url(${heroBgShape})` } as React.CSSProperties}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260303_175853_da9ead9c-0e05-40d9-b9bd-06a9b5a73d27.mp4"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/20 to-transparent" />
+        </div>
 
-        <div className="relative mx-auto max-w-3xl">
-          <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 backdrop-blur-sm">
-            <Blocks className="h-4 w-4 text-primary" />
-            <span className="text-xs font-semibold text-primary">SDK 2.0.1 · Granite 1.0+</span>
-          </motion.div>
-
-          <motion.h1
-            variants={fadeUp}
-            className="text-[2.75rem] font-black tracking-tight text-foreground leading-[1.08] sm:text-[4rem]"
-          >
-            레고처럼 조립하는
-            <br />
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[shimmer_3s_ease-in-out_infinite]">
-              토스 미니앱
-            </span>
-          </motion.h1>
-
-          <motion.p variants={fadeUp} className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <strong className="text-foreground">23</strong>개 SDK 블록과 <strong className="text-foreground">6</strong>개 풀스택 시나리오.
-            <br />
-            필요한 기능만 골라 붙이면 미니앱이 된다.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-2">
-            {["Vite 6", "React 19", "TypeScript", "Tailwind CSS", "shadcn-ui"].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-border/50 bg-card/80 px-3 py-1 text-xs font-semibold text-foreground/60 backdrop-blur-sm"
-              >
-                {t}
-              </span>
-            ))}
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="mt-12 flex justify-center sm:justify-start">
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-              <ArrowDown className="h-5 w-5 text-muted-foreground/30" />
+        {/* UI content layer */}
+        <div className="relative w-full h-full z-10">
+          {/* Navigation */}
+          <nav className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between px-4 pt-4 md:px-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-primary rounded-full w-12 h-12 md:w-[5.5rem] md:h-[5.5rem] flex items-center justify-center"
+            >
+              <img src={logo} alt="Logo" className="h-4 md:h-6 object-contain invert" />
             </motion.div>
+
+            {/* Desktop nav */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="hidden md:flex items-center gap-3 -mt-1 -mr-2"
+            >
+              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <Search className="w-7 h-7" />
+              </button>
+              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <ShoppingCart className="w-7 h-7" />
+              </button>
+              <div className="bg-primary rounded-full flex items-center gap-4 pl-2 pr-7 text-primary-foreground h-[5.5rem]">
+                <div className="w-14 h-14 rounded-full bg-primary-foreground flex items-center justify-center text-primary">
+                  <User className="w-7 h-7" />
+                </div>
+                <span className="text-lg font-medium tracking-wide">Contact</span>
+              </div>
+            </motion.div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden bg-primary rounded-full w-12 h-12 flex items-center justify-center text-primary-foreground"
+            >
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </nav>
+
+          {/* Mobile menu */}
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="md:hidden absolute top-20 left-4 right-4 z-30 bg-primary rounded-2xl p-4 flex flex-col gap-3"
+            >
+              {[
+                { icon: <Search className="w-5 h-5" />, label: "Search" },
+                { icon: <ShoppingCart className="w-5 h-5" />, label: "Cart" },
+                { icon: <User className="w-5 h-5" />, label: "Contact" },
+              ].map((item) => (
+                <button key={item.label} className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
+                  {item.icon} <span className="tracking-wide">{item.label}</span>
+                </button>
+              ))}
+            </motion.div>
+          )}
+
+          {/* SDK Floating Pins (desktop only) */}
+          <SDKPin
+            block={{ name: "SDK 2.0.1", api: "Granite 1.0+" }}
+            position="left-[8%] top-[18%]"
+            direction="left"
+          />
+          <SDKPin
+            block={{ name: "23 BLOCKS", api: "with-*" }}
+            position="right-[8%] top-[42%]"
+            direction="right"
+          />
+          <SDKPin
+            block={{ name: "6 SCENARIOS", api: "scenario-*" }}
+            position="right-[8%] top-[58%]"
+            direction="right"
+          />
+
+          {/* Shop Now button — top right under nav (desktop) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="hidden md:block absolute top-[7.5rem] right-10 z-10"
+          >
+            <a
+              href="https://developers-apps-in-toss.toss.im"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary-foreground text-primary px-8 py-4 rounded-full font-[family-name:var(--font-display)] text-sm tracking-[0.15em] uppercase hover:bg-primary-foreground/90 transition-colors"
+            >
+              Docs
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+
+          {/* Hero headline — bottom left */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute bottom-[8%] left-[3%] z-10"
+          >
+            <h1 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight text-primary-foreground uppercase">
+              Build<br />
+              Mini-Apps,<br />
+              Like Lego.
+            </h1>
+          </motion.div>
+
+          {/* Browse blocks button — bottom right */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="absolute bottom-0 right-0 z-10"
+          >
+            <a
+              href="#blocks"
+              className="block bg-primary text-primary-foreground rounded-tl-[1.5rem] px-8 py-4 md:px-12 md:py-6 font-[family-name:var(--font-display)] text-base md:text-lg tracking-[0.2em] uppercase hover:bg-secondary transition-colors"
+            >
+              <span className="md:hidden">Explore</span>
+              <span className="hidden md:inline">Explore Blocks</span>
+            </a>
           </motion.div>
         </div>
-      </Section>
+      </section>
 
       {/* ▸ WORKFLOW — 3 steps */}
-      <Section className="mx-auto max-w-4xl px-5 pb-20 sm:px-8">
-        <motion.h2 variants={fadeUp} className="mb-8 text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">
-          워크플로우
+      <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
+        <motion.h2 variants={fadeUp} className="mb-10 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+          Workflow
         </motion.h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
@@ -345,17 +396,16 @@ const Index = () => {
               key={item.num}
               variants={fadeUp}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-border/40 bg-card p-6 transition-all hover:shadow-lg hover:shadow-primary/5"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-foreground/20"
             >
-              <NoiseOverlay />
-              <span className="absolute top-2 right-3 font-mono text-5xl font-black text-foreground/[0.03] select-none">
+              <span className="absolute top-2 right-3 font-[family-name:var(--font-display)] text-5xl font-black text-foreground/[0.04] select-none">
                 {item.num}
               </span>
               <div className="relative z-10">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground/10 text-foreground transition-colors group-hover:bg-foreground/15">
                   {item.icon}
                 </div>
-                <p className="mt-4 text-sm font-black text-foreground">{item.title}</p>
+                <p className="mt-4 text-sm font-black text-foreground font-[family-name:var(--font-display)]">{item.title}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
               </div>
             </motion.div>
@@ -363,20 +413,20 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* ▸ SDK BLOCK MAP — Bento Mosaic */}
-      <Section className="mx-auto max-w-5xl px-5 pb-20 sm:px-8">
+      {/* ▸ SDK BLOCK CATALOG */}
+      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8" id="blocks">
         <motion.div variants={fadeUp} className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">SDK 블록 카탈로그</h2>
-            <p className="mt-2 text-3xl font-black text-foreground sm:text-4xl">
-              {SDK_BLOCKS.length}개의 레고 블록
+            <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
+            <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground sm:text-4xl">
+              {SDK_BLOCKS.length} Blocks
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(CAT) as Category[]).map((cat) => (
-              <span key={cat} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold ${CAT[cat].fg} ${CAT[cat].bg} ${CAT[cat].border} border`}>
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
                 <span className={`h-1.5 w-1.5 rounded-full ${CAT[cat].dot}`} />
-                {CAT[cat].label}
+                <span className="text-muted-foreground">{CAT[cat].label}</span>
               </span>
             ))}
           </div>
@@ -393,10 +443,12 @@ const Index = () => {
       </Section>
 
       {/* ▸ SCENARIOS */}
-      <Section className="mx-auto max-w-4xl px-5 pb-20 sm:px-8">
+      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
         <motion.div variants={fadeUp} className="mb-10">
-          <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">풀스택 시나리오</h2>
-          <p className="mt-2 text-3xl font-black text-foreground">조합 레시피 {SCENARIOS.length}가지</p>
+          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Fullstack Scenarios</h2>
+          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
+            {SCENARIOS.length} Recipes
+          </p>
         </motion.div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SCENARIOS.map((s) => (
@@ -406,12 +458,12 @@ const Index = () => {
       </Section>
 
       {/* ▸ AI SKILLS */}
-      <Section className="mx-auto max-w-4xl px-5 pb-20 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-8">
-          <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">AI 스킬</h2>
-          <p className="mt-2 text-2xl font-black text-foreground">
-            <Sparkles className="mr-1.5 inline h-5 w-5 text-primary" />
-            슬래시 명령어 {SKILLS.length}개
+      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
+        <motion.div variants={fadeUp} className="mb-10">
+          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
+          <p className="mt-3 text-2xl font-[family-name:var(--font-display)] font-black text-foreground">
+            <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
+            {SKILLS.length} Commands
           </p>
         </motion.div>
         <motion.div variants={stagger} className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -420,24 +472,24 @@ const Index = () => {
               key={sk.name}
               variants={fadeUp}
               whileHover={{ x: 6, transition: { duration: 0.15 } }}
-              className="group flex items-center justify-between rounded-xl border border-border/40 bg-card px-4 py-3.5 transition-all hover:bg-accent/10 hover:shadow-md hover:shadow-primary/5"
+              className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 transition-all hover:border-foreground/20"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
-                  <Zap className="h-3.5 w-3.5 text-primary" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground/10">
+                  <Zap className="h-3.5 w-3.5 text-foreground/50" />
                 </div>
                 <code className="text-sm font-bold text-foreground">/{sk.name}</code>
               </div>
-              <Badge variant="secondary" className="text-[10px] font-semibold">{sk.trigger}</Badge>
+              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full">{sk.trigger}</span>
             </motion.div>
           ))}
         </motion.div>
       </Section>
 
       {/* ▸ FOOTER */}
-      <footer className="border-t border-border/30 bg-card/30 backdrop-blur-md">
-        <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8">
-          <p className="mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">공식 문서</p>
+      <footer className="border-t border-border bg-card/30">
+        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+          <p className="mb-6 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Documentation</p>
           <div className="flex flex-wrap gap-2.5">
             {DOC_LINKS.map((d) => (
               <a
@@ -445,15 +497,15 @@ const Index = () => {
                 href={d.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-border/40 bg-background/80 px-3.5 py-2 text-xs font-semibold text-foreground/70 transition-all hover:bg-primary/5 hover:text-primary hover:border-primary/20"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-card px-3.5 py-2 text-xs font-semibold text-foreground/60 transition-all hover:text-foreground hover:border-foreground/30"
               >
                 {d.label}
                 <ExternalLink className="h-3 w-3 opacity-30" />
               </a>
             ))}
           </div>
-          <p className="mt-10 text-center text-[11px] text-muted-foreground/40">
-            이 페이지는 프로젝트 소개용입니다 · 실제 미니앱 개발 시 교체하세요
+          <p className="mt-12 text-center text-[11px] text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
+            AppsInToss SDK Templates · Granite 1.0+
           </p>
         </div>
       </footer>
