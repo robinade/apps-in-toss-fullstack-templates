@@ -76,20 +76,30 @@ const SCENARIOS: Scenario[] = [
 ];
 
 const SKILLS = [
-  { name: "appintoss-login", trigger: "로그인" },
-  { name: "appintoss-rewarded-ad", trigger: "보상형 광고" },
-  { name: "appintoss-banner-ad", trigger: "배너 광고" },
-  { name: "appintoss-promotion-reward", trigger: "리워드" },
-  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수" },
-  { name: "appintoss-smart-message", trigger: "푸시 메시지" },
-  { name: "appintoss-tds-mobile", trigger: "TDS 디자인" },
+  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT" },
+  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동" },
+  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2" },
+  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급" },
+  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트" },
+  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성" },
+  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수" },
+  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터" },
+  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅" },
+  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현" },
+  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크" },
 ];
 
 const DOC_LINKS = [
+  { label: "개발자 센터", url: "https://developers-apps-in-toss.toss.im" },
   { label: "SDK Overview", url: "https://developers-apps-in-toss.toss.im/llms.txt" },
+  { label: "SDK Full Docs", url: "https://developers-apps-in-toss.toss.im/llms-full.txt" },
   { label: "광고 가이드", url: "https://developers-apps-in-toss.toss.im/ads/develop.html" },
   { label: "프로모션", url: "https://developers-apps-in-toss.toss.im/promotion/develop.html" },
   { label: "로그인", url: "https://developers-apps-in-toss.toss.im/login/develop.html" },
+  { label: "공유리워드", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/친구초대/contactsViral.html" },
+  { label: "인앱결제", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/인앱결제/IAP.html" },
+  { label: "권한", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/권한/permission.html" },
+  { label: "네비게이션바", url: "https://developers-apps-in-toss.toss.im/bedrock/reference/framework/UI/NavigationBar.html" },
   { label: "TDS Mobile", url: "https://tossmini-docs.toss.im/tds-mobile" },
 ];
 
@@ -381,32 +391,38 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ▸ WORKFLOW — 3 steps */}
+      {/* ▸ HARNESS WORKFLOW — 7 steps */}
       <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
-        <motion.h2 variants={fadeUp} className="mb-10 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
-          Workflow
+        <motion.h2 variants={fadeUp} className="mb-3 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+          Harness Engineering
         </motion.h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <motion.p variants={fadeUp} className="mb-10 text-lg text-muted-foreground max-w-2xl">
+          처음부터 심사 반려 없이 만드는 <span className="text-foreground font-semibold">7단계 구조화 워크플로우</span>
+        </motion.p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {[
-            { icon: <Rocket className="h-6 w-6" />, title: "Boilerplate", desc: "UI 기반 틀을 잡는다", num: "01" },
-            { icon: <Puzzle className="h-6 w-6" />, title: "SDK 블록 조합", desc: "필요한 기능을 끼운다", num: "02" },
-            { icon: <Layers className="h-6 w-6" />, title: "시나리오 참고", desc: "풀스택 패턴을 따른다", num: "03" },
+            { icon: <User className="h-5 w-5" />, title: "요구사항", num: "01" },
+            { icon: <ShieldCheck className="h-5 w-5" />, title: "초기화", num: "02" },
+            { icon: <Puzzle className="h-5 w-5" />, title: "SDK 선택", num: "03" },
+            { icon: <Layers className="h-5 w-5" />, title: "TDS 디자인", num: "04" },
+            { icon: <Rocket className="h-5 w-5" />, title: "점진적 구현", num: "05" },
+            { icon: <Search className="h-5 w-5" />, title: "검증 루프", num: "06" },
+            { icon: <Sparkles className="h-5 w-5" />, title: "최종 심사", num: "07" },
           ].map((item) => (
             <motion.div
               key={item.num}
               variants={fadeUp}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-foreground/20"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20"
             >
-              <span className="absolute top-2 right-3 font-[family-name:var(--font-display)] text-5xl font-black text-foreground/[0.04] select-none">
+              <span className="absolute top-1 right-2 font-[family-name:var(--font-display)] text-3xl font-black text-foreground/[0.04] select-none">
                 {item.num}
               </span>
               <div className="relative z-10">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground/10 text-foreground transition-colors group-hover:bg-foreground/15">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground/10 text-foreground transition-colors group-hover:bg-foreground/15">
                   {item.icon}
                 </div>
-                <p className="mt-4 text-sm font-black text-foreground font-[family-name:var(--font-display)]">{item.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
+                <p className="mt-3 text-xs font-black text-foreground font-[family-name:var(--font-display)]">{item.title}</p>
               </div>
             </motion.div>
           ))}
@@ -461,7 +477,7 @@ const Index = () => {
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
         <motion.div variants={fadeUp} className="mb-10">
           <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
-          <p className="mt-3 text-2xl font-[family-name:var(--font-display)] font-black text-foreground">
+          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
             <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
             {SKILLS.length} Commands
           </p>
@@ -474,13 +490,16 @@ const Index = () => {
               whileHover={{ x: 6, transition: { duration: 0.15 } }}
               className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 transition-all hover:border-foreground/20"
             >
-              <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground/10">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-foreground/10">
                   <Zap className="h-3.5 w-3.5 text-foreground/50" />
                 </div>
-                <code className="text-sm font-bold text-foreground">/{sk.name}</code>
+                <div className="min-w-0">
+                  <code className="text-sm font-bold text-foreground block truncate">/{sk.name}</code>
+                  <span className="text-[10px] text-muted-foreground/60">{(sk as any).desc}</span>
+                </div>
               </div>
-              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full">{sk.trigger}</span>
+              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0">{sk.trigger}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -505,7 +524,7 @@ const Index = () => {
             ))}
           </div>
           <p className="mt-12 text-center text-[11px] text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
-            AppsInToss SDK Templates · Granite 1.0+
+            AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6
           </p>
         </div>
       </footer>
