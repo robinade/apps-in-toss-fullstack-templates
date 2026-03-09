@@ -76,13 +76,17 @@ const SCENARIOS: Scenario[] = [
 ];
 
 const SKILLS = [
-  { name: "appintoss-login", trigger: "로그인" },
-  { name: "appintoss-rewarded-ad", trigger: "보상형 광고" },
-  { name: "appintoss-banner-ad", trigger: "배너 광고" },
-  { name: "appintoss-promotion-reward", trigger: "리워드" },
-  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수" },
-  { name: "appintoss-smart-message", trigger: "푸시 메시지" },
-  { name: "appintoss-tds-mobile", trigger: "TDS 디자인" },
+  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT" },
+  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동" },
+  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2" },
+  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급" },
+  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트" },
+  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성" },
+  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수" },
+  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터" },
+  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅" },
+  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현" },
+  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크" },
 ];
 
 const DOC_LINKS = [
