@@ -579,8 +579,9 @@ const Index = () => {
               </a>
             ))}
           </div>
-          <p className="mt-12 text-center text-[11px] text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
-            AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6
+          <p className="mt-12 text-center text-xs text-muted-foreground/40 font-[family-name:var(--font-display)] tracking-wider uppercase">
+            <span className="hidden sm:inline">AppsInToss Fullstack Templates · SDK 2.0.1 · Granite 1.0+ · React 19 · Vite 6</span>
+            <span className="sm:hidden">AppsInToss · SDK 2.0.1<br />Granite 1.0+ · React 19 · Vite 6</span>
           </p>
         </div>
       </footer>
