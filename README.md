@@ -10,6 +10,43 @@
 
 레고 조립하듯 기본 틀 위에 필요한 SDK 기능만 골라 붙여 새 미니앱을 만든다.
 
+## 🏗️ Harness Engineering
+
+이 보일러플레이트는 **harness engineering**이 적용되어 있습니다.
+AI 에이전트(Claude Code)가 "처음부터 심사 반려 없이" 미니앱을 만들 수 있도록
+7단계 구조화된 워크플로우를 제공합니다.
+
+### Quick Start
+
+```bash
+# 1. Clone
+git clone <repo-url> my-mini-app && cd my-mini-app
+npm install
+
+# 2. Claude Code에서 바로 시작
+> "출석체크 미니앱을 만들고 싶어"
+```
+
+AI 에이전트가 자동으로 7단계 워크플로우를 시작합니다:
+1. 요구사항 정의 → 2. 초기화(반려방지) → 3. SDK 선택 → 4. TDS 디자인
+→ 5. 점진적 구현 → 6. 검증 루프 → 7. 최종 심사
+
+### 권장 플러그인 (선택사항)
+
+더 강력한 워크플로우를 위해 아래 플러그인 설치를 권장합니다:
+
+```bash
+# superpowers — TDD, 코드리뷰, 체계적 계획
+claude plugin marketplace add obra/superpowers-marketplace
+claude plugin install superpowers@superpowers-marketplace
+
+# ouroboros — 요구사항 인터뷰, 스펙 결정화
+claude plugin marketplace add Q00/ouroboros
+claude plugin install ouroboros@ouroboros
+```
+
+자세한 가이드: [docs/harness-engineering-guide.md](docs/harness-engineering-guide.md)
+
 ## 왜 이 템플릿인가?
 
 | | 처음부터 시작 | 이 템플릿 |
