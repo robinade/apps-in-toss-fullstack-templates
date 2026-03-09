@@ -435,12 +435,12 @@ const Index = () => {
             { icon: <Rocket className="h-5 w-5" />, title: "점진적 구현", num: "05" },
             { icon: <Search className="h-5 w-5" />, title: "검증 루프", num: "06" },
             { icon: <Sparkles className="h-5 w-5" />, title: "최종 심사", num: "07" },
-          ].map((item) => (
+          ].map((item, idx, arr) => (
             <motion.div
               key={item.num}
               variants={fadeUp}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20"
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20 ${idx === arr.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
             >
               <span className="absolute top-1 right-2 font-[family-name:var(--font-display)] text-3xl font-black text-foreground/[0.04] select-none">
                 {item.num}
