@@ -5,6 +5,9 @@ import {
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
   Megaphone, Share2, Camera, Navigation, Sparkles,
   ExternalLink, Zap, BookOpen, ChevronRight, ArrowRight,
+  LogIn, BarChart3, Gift, ClipboardCheck, MessageSquare, Palette,
+  Cog, PlayCircle, CheckCircle2, Bug, FileText, Wand2,
+  Brain, Video, Database, Globe2, PenTool, Eye,
 } from "lucide-react";
 import heroBgShape from "@/assets/hero-bg-shape.png";
 import logo from "@/assets/logo.png";
@@ -75,18 +78,49 @@ const SCENARIOS: Scenario[] = [
   { name: "온보딩 코치", emoji: "🧭", desc: "온보딩 + 코치마크 오버레이", blocks: ["auth", "env"] },
 ];
 
-const SKILLS = [
-  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT" },
-  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동" },
-  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2" },
-  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급" },
-  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트" },
-  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성" },
-  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수" },
-  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터" },
-  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅" },
-  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현" },
-  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크" },
+type SkillCategory = "sdk" | "harness" | "superpower";
+
+const SKILL_CAT: Record<SkillCategory, { label: string; color: string; dot: string }> = {
+  sdk: { label: "앱인토스 SDK", color: "hsl(217 91% 60%)", dot: "bg-[hsl(217_91%_60%)]" },
+  harness: { label: "Harness 워크플로우", color: "hsl(160 84% 39%)", dot: "bg-[hsl(160_84%_39%)]" },
+  superpower: { label: "범용 Superpowers", color: "hsl(270 76% 56%)", dot: "bg-[hsl(270_76%_56%)]" },
+};
+
+interface Skill {
+  name: string;
+  trigger: string;
+  desc: string;
+  cat: SkillCategory;
+  icon: React.ReactNode;
+}
+
+const SKILLS: Skill[] = [
+  // SDK (9개)
+  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT", cat: "sdk", icon: <LogIn className="h-3.5 w-3.5" /> },
+  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동", cat: "sdk", icon: <BarChart3 className="h-3.5 w-3.5" /> },
+  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2", cat: "sdk", icon: <Megaphone className="h-3.5 w-3.5" /> },
+  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급", cat: "sdk", icon: <Gift className="h-3.5 w-3.5" /> },
+  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트", cat: "sdk", icon: <ClipboardCheck className="h-3.5 w-3.5" /> },
+  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성", cat: "sdk", icon: <MessageSquare className="h-3.5 w-3.5" /> },
+  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수", cat: "sdk", icon: <Palette className="h-3.5 w-3.5" /> },
+  { name: "appintoss-coachmark-tutorial", trigger: "온보딩", desc: "코치마크 · 튜토리얼", cat: "sdk", icon: <Eye className="h-3.5 w-3.5" /> },
+  { name: "appintoss-docs", trigger: "SDK 레퍼런스", desc: "전체 API 문서", cat: "sdk", icon: <BookOpen className="h-3.5 w-3.5" /> },
+  // Harness (4개)
+  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터", cat: "harness", icon: <Cog className="h-3.5 w-3.5" /> },
+  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅", cat: "harness", icon: <PlayCircle className="h-3.5 w-3.5" /> },
+  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현", cat: "harness", icon: <CheckCircle2 className="h-3.5 w-3.5" /> },
+  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크", cat: "harness", icon: <ShieldCheck className="h-3.5 w-3.5" /> },
+  // Superpowers (10개)
+  { name: "superpower-brainstorming", trigger: "브레인스토밍", desc: "아이디어 → 디자인", cat: "superpower", icon: <Brain className="h-3.5 w-3.5" /> },
+  { name: "superpower-writing-plans", trigger: "계획 수립", desc: "구현 플랜 작성", cat: "superpower", icon: <FileText className="h-3.5 w-3.5" /> },
+  { name: "superpower-executing-plans", trigger: "계획 실행", desc: "배치별 실행·리뷰", cat: "superpower", icon: <Rocket className="h-3.5 w-3.5" /> },
+  { name: "superpower-systematic-debugging", trigger: "디버깅", desc: "체계적 근본원인 분석", cat: "superpower", icon: <Bug className="h-3.5 w-3.5" /> },
+  { name: "frontend-design", trigger: "프론트엔드", desc: "프로덕션급 UI 생성", cat: "superpower", icon: <Wand2 className="h-3.5 w-3.5" /> },
+  { name: "web-design-guidelines", trigger: "UI 감사", desc: "웹 인터페이스 가이드라인", cat: "superpower", icon: <PenTool className="h-3.5 w-3.5" /> },
+  { name: "remotion-best-practices", trigger: "Remotion", desc: "React 비디오 생성", cat: "superpower", icon: <Video className="h-3.5 w-3.5" /> },
+  { name: "supabase-postgres-best-practices", trigger: "Postgres", desc: "DB 성능 최적화", cat: "superpower", icon: <Database className="h-3.5 w-3.5" /> },
+  { name: "vercel-react-best-practices", trigger: "React", desc: "성능 최적화 패턴", cat: "superpower", icon: <Globe2 className="h-3.5 w-3.5" /> },
+  { name: "prompt-engineering-patterns", trigger: "프롬프트", desc: "LLM 프롬프트 패턴", cat: "superpower", icon: <Sparkles className="h-3.5 w-3.5" /> },
 ];
 
 const DOC_LINKS = [
@@ -460,49 +494,63 @@ const Index = () => {
 
       {/* ▸ SCENARIOS */}
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-10">
-          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Fullstack Scenarios</h2>
-          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
-            {SCENARIOS.length} Recipes
-          </p>
-        </motion.div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SCENARIOS.map((s) => (
-            <ScenarioCard key={s.name} scenario={s} />
-          ))}
-        </div>
-      </Section>
-
-      {/* ▸ AI SKILLS */}
-      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-10">
+        <motion.div variants={fadeUp} className="mb-6">
           <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
           <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
             <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
             {SKILLS.length} Commands
           </p>
         </motion.div>
-        <motion.div variants={stagger} className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-          {SKILLS.map((sk) => (
-            <motion.div
-              key={sk.name}
-              variants={fadeUp}
-              whileHover={{ x: 6, transition: { duration: 0.15 } }}
-              className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 transition-all hover:border-foreground/20"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-foreground/10">
-                  <Zap className="h-3.5 w-3.5 text-foreground/50" />
-                </div>
-                <div className="min-w-0">
-                  <code className="text-sm font-bold text-foreground block truncate">/{sk.name}</code>
-                  <span className="text-[10px] text-muted-foreground/60">{(sk as any).desc}</span>
-                </div>
-              </div>
-              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0">{sk.trigger}</span>
-            </motion.div>
-          ))}
+
+        {/* Category legend */}
+        <motion.div variants={fadeUp} className="mb-6 flex flex-wrap gap-2">
+          {(Object.keys(SKILL_CAT) as SkillCategory[]).map((cat) => {
+            const c = SKILL_CAT[cat];
+            const count = SKILLS.filter((s) => s.cat === cat).length;
+            return (
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+                <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
+                <span className="text-muted-foreground">{c.label}</span>
+                <span className="text-muted-foreground/40">({count})</span>
+              </span>
+            );
+          })}
         </motion.div>
+
+        {/* Skills grouped by category */}
+        {(Object.keys(SKILL_CAT) as SkillCategory[]).map((cat) => {
+          const c = SKILL_CAT[cat];
+          const catSkills = SKILLS.filter((s) => s.cat === cat);
+          return (
+            <div key={cat} className="mb-5 last:mb-0">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
+                <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
+                {c.label}
+              </p>
+              <motion.div variants={stagger} className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {catSkills.map((sk) => (
+                  <motion.div
+                    key={sk.name}
+                    variants={fadeUp}
+                    whileHover={{ x: 6, transition: { duration: 0.15 } }}
+                    className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-all hover:border-foreground/20"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ background: `${c.color.replace("hsl", "hsla").replace(")", " / 0.15)")}`, color: c.color }}>
+                        {sk.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <code className="text-xs font-bold text-foreground block truncate">/{sk.name}</code>
+                        <span className="text-[10px] text-muted-foreground/60">{sk.desc}</span>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          );
+        })}
       </Section>
 
       {/* ▸ FOOTER */}
