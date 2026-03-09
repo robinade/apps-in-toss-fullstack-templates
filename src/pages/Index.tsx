@@ -78,18 +78,49 @@ const SCENARIOS: Scenario[] = [
   { name: "온보딩 코치", emoji: "🧭", desc: "온보딩 + 코치마크 오버레이", blocks: ["auth", "env"] },
 ];
 
-const SKILLS = [
-  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT" },
-  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동" },
-  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2" },
-  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급" },
-  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트" },
-  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성" },
-  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수" },
-  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터" },
-  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅" },
-  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현" },
-  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크" },
+type SkillCategory = "sdk" | "harness" | "superpower";
+
+const SKILL_CAT: Record<SkillCategory, { label: string; color: string; dot: string }> = {
+  sdk: { label: "앱인토스 SDK", color: "hsl(217 91% 60%)", dot: "bg-[hsl(217_91%_60%)]" },
+  harness: { label: "Harness 워크플로우", color: "hsl(160 84% 39%)", dot: "bg-[hsl(160_84%_39%)]" },
+  superpower: { label: "범용 Superpowers", color: "hsl(270 76% 56%)", dot: "bg-[hsl(270_76%_56%)]" },
+};
+
+interface Skill {
+  name: string;
+  trigger: string;
+  desc: string;
+  cat: SkillCategory;
+  icon: React.ReactNode;
+}
+
+const SKILLS: Skill[] = [
+  // SDK (9개)
+  { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT", cat: "sdk", icon: <LogIn className="h-3.5 w-3.5" /> },
+  { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동", cat: "sdk", icon: <BarChart3 className="h-3.5 w-3.5" /> },
+  { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2", cat: "sdk", icon: <Megaphone className="h-3.5 w-3.5" /> },
+  { name: "appintoss-promotion-reward", trigger: "리워드", desc: "토스포인트 지급", cat: "sdk", icon: <Gift className="h-3.5 w-3.5" /> },
+  { name: "appintoss-nongame-launch-checklist", trigger: "출시 검수", desc: "11단계 체크리스트", cat: "sdk", icon: <ClipboardCheck className="h-3.5 w-3.5" /> },
+  { name: "appintoss-smart-message", trigger: "푸시 메시지", desc: "마케팅 소재 생성", cat: "sdk", icon: <MessageSquare className="h-3.5 w-3.5" /> },
+  { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수", cat: "sdk", icon: <Palette className="h-3.5 w-3.5" /> },
+  { name: "appintoss-coachmark-tutorial", trigger: "온보딩", desc: "코치마크 · 튜토리얼", cat: "sdk", icon: <Eye className="h-3.5 w-3.5" /> },
+  { name: "appintoss-docs", trigger: "SDK 레퍼런스", desc: "전체 API 문서", cat: "sdk", icon: <BookOpen className="h-3.5 w-3.5" /> },
+  // Harness (4개)
+  { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터", cat: "harness", icon: <Cog className="h-3.5 w-3.5" /> },
+  { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅", cat: "harness", icon: <PlayCircle className="h-3.5 w-3.5" /> },
+  { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현", cat: "harness", icon: <CheckCircle2 className="h-3.5 w-3.5" /> },
+  { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크", cat: "harness", icon: <ShieldCheck className="h-3.5 w-3.5" /> },
+  // Superpowers (10개)
+  { name: "superpower-brainstorming", trigger: "브레인스토밍", desc: "아이디어 → 디자인", cat: "superpower", icon: <Brain className="h-3.5 w-3.5" /> },
+  { name: "superpower-writing-plans", trigger: "계획 수립", desc: "구현 플랜 작성", cat: "superpower", icon: <FileText className="h-3.5 w-3.5" /> },
+  { name: "superpower-executing-plans", trigger: "계획 실행", desc: "배치별 실행·리뷰", cat: "superpower", icon: <Rocket className="h-3.5 w-3.5" /> },
+  { name: "superpower-systematic-debugging", trigger: "디버깅", desc: "체계적 근본원인 분석", cat: "superpower", icon: <Bug className="h-3.5 w-3.5" /> },
+  { name: "frontend-design", trigger: "프론트엔드", desc: "프로덕션급 UI 생성", cat: "superpower", icon: <Wand2 className="h-3.5 w-3.5" /> },
+  { name: "web-design-guidelines", trigger: "UI 감사", desc: "웹 인터페이스 가이드라인", cat: "superpower", icon: <PenTool className="h-3.5 w-3.5" /> },
+  { name: "remotion-best-practices", trigger: "Remotion", desc: "React 비디오 생성", cat: "superpower", icon: <Video className="h-3.5 w-3.5" /> },
+  { name: "supabase-postgres-best-practices", trigger: "Postgres", desc: "DB 성능 최적화", cat: "superpower", icon: <Database className="h-3.5 w-3.5" /> },
+  { name: "vercel-react-best-practices", trigger: "React", desc: "성능 최적화 패턴", cat: "superpower", icon: <Globe2 className="h-3.5 w-3.5" /> },
+  { name: "prompt-engineering-patterns", trigger: "프롬프트", desc: "LLM 프롬프트 패턴", cat: "superpower", icon: <Sparkles className="h-3.5 w-3.5" /> },
 ];
 
 const DOC_LINKS = [
