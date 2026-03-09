@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Github, Globe, User, Menu, X,
+  Github, Globe, User, Menu, X, Search,
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
   Megaphone, Share2, Camera, Navigation, Sparkles,
   ExternalLink, Zap, BookOpen, ChevronRight, ArrowRight,
