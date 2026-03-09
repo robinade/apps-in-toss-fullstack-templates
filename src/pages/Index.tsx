@@ -114,7 +114,7 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.section ref={ref} initial="hidden" animate={inView ? "show" : "hidden"} variants={stagger} className={className}>
+    <motion.section ref={ref} id={id} initial="hidden" animate={inView ? "show" : "hidden"} variants={stagger} className={className}>
       {children}
     </motion.section>
   );
