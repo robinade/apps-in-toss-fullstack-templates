@@ -516,7 +516,7 @@ const Index = () => {
             const c = SKILL_CAT[cat];
             const count = SKILLS.filter((s) => s.cat === cat).length;
             return (
-              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
                 <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
                 <span className="text-muted-foreground">{c.label}</span>
                 <span className="text-muted-foreground/40">({count})</span>
