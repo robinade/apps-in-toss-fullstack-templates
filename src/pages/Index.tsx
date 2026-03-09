@@ -531,7 +531,7 @@ const Index = () => {
           const catSkills = SKILLS.filter((s) => s.cat === cat);
           return (
             <div key={cat} className="mb-5 last:mb-0">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
                 <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
                 {c.label}
               </p>
