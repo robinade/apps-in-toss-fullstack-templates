@@ -467,7 +467,7 @@ const Index = () => {
           </div>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(CAT) as Category[]).map((cat) => (
-              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold border border-border bg-card">
+              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
                 <span className={`h-1.5 w-1.5 rounded-full ${CAT[cat].dot}`} />
                 <span className="text-muted-foreground">{CAT[cat].label}</span>
               </span>
