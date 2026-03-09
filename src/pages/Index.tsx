@@ -564,7 +564,7 @@ const Index = () => {
       {/* ▸ FOOTER */}
       <footer className="border-t border-border bg-card/30">
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-          <p className="mb-6 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Documentation</p>
+          <p className="mb-6 text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Documentation</p>
           <div className="flex flex-wrap gap-2.5">
             {DOC_LINKS.map((d) => (
               <a
