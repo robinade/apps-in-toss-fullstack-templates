@@ -490,13 +490,16 @@ const Index = () => {
               whileHover={{ x: 6, transition: { duration: 0.15 } }}
               className="group flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 transition-all hover:border-foreground/20"
             >
-              <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground/10">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-foreground/10">
                   <Zap className="h-3.5 w-3.5 text-foreground/50" />
                 </div>
-                <code className="text-sm font-bold text-foreground">/{sk.name}</code>
+                <div className="min-w-0">
+                  <code className="text-sm font-bold text-foreground block truncate">/{sk.name}</code>
+                  <span className="text-[10px] text-muted-foreground/60">{(sk as any).desc}</span>
+                </div>
               </div>
-              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full">{sk.trigger}</span>
+              <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0">{sk.trigger}</span>
             </motion.div>
           ))}
         </motion.div>
