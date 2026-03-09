@@ -460,7 +460,7 @@ const Index = () => {
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8" id="blocks">
         <motion.div variants={fadeUp} className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
+            <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
             <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground sm:text-4xl">
               {SDK_BLOCKS.length} Blocks
             </p>
