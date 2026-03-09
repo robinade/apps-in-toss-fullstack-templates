@@ -217,7 +217,7 @@ function BlockCard({ block }: { block: SDKBlock }) {
         <div>
           <div className="mb-2 flex items-center gap-1.5" style={{ color: c.color }}>
             {c.icon}
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-70">{c.label}</span>
+            <span className="text-xs font-bold uppercase tracking-[0.15em] opacity-70">{c.label}</span>
           </div>
 
           <p className={`font-black leading-tight ${isLg ? "text-2xl" : isWide ? "text-base" : "text-sm"}`} style={{ color: c.color }}>
