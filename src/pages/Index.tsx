@@ -391,32 +391,38 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ▸ WORKFLOW — 3 steps */}
+      {/* ▸ HARNESS WORKFLOW — 7 steps */}
       <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
-        <motion.h2 variants={fadeUp} className="mb-10 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
-          Workflow
+        <motion.h2 variants={fadeUp} className="mb-3 text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+          Harness Engineering
         </motion.h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <motion.p variants={fadeUp} className="mb-10 text-lg text-muted-foreground max-w-2xl">
+          처음부터 심사 반려 없이 만드는 <span className="text-foreground font-semibold">7단계 구조화 워크플로우</span>
+        </motion.p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {[
-            { icon: <Rocket className="h-6 w-6" />, title: "Boilerplate", desc: "UI 기반 틀을 잡는다", num: "01" },
-            { icon: <Puzzle className="h-6 w-6" />, title: "SDK 블록 조합", desc: "필요한 기능을 끼운다", num: "02" },
-            { icon: <Layers className="h-6 w-6" />, title: "시나리오 참고", desc: "풀스택 패턴을 따른다", num: "03" },
+            { icon: <User className="h-5 w-5" />, title: "요구사항", num: "01" },
+            { icon: <ShieldCheck className="h-5 w-5" />, title: "초기화", num: "02" },
+            { icon: <Puzzle className="h-5 w-5" />, title: "SDK 선택", num: "03" },
+            { icon: <Layers className="h-5 w-5" />, title: "TDS 디자인", num: "04" },
+            { icon: <Rocket className="h-5 w-5" />, title: "점진적 구현", num: "05" },
+            { icon: <Search className="h-5 w-5" />, title: "검증 루프", num: "06" },
+            { icon: <Sparkles className="h-5 w-5" />, title: "최종 심사", num: "07" },
           ].map((item) => (
             <motion.div
               key={item.num}
               variants={fadeUp}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-foreground/20"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20"
             >
-              <span className="absolute top-2 right-3 font-[family-name:var(--font-display)] text-5xl font-black text-foreground/[0.04] select-none">
+              <span className="absolute top-1 right-2 font-[family-name:var(--font-display)] text-3xl font-black text-foreground/[0.04] select-none">
                 {item.num}
               </span>
               <div className="relative z-10">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground/10 text-foreground transition-colors group-hover:bg-foreground/15">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground/10 text-foreground transition-colors group-hover:bg-foreground/15">
                   {item.icon}
                 </div>
-                <p className="mt-4 text-sm font-black text-foreground font-[family-name:var(--font-display)]">{item.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
+                <p className="mt-3 text-xs font-black text-foreground font-[family-name:var(--font-display)]">{item.title}</p>
               </div>
             </motion.div>
           ))}
