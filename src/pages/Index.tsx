@@ -477,7 +477,7 @@ const Index = () => {
       <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
         <motion.div variants={fadeUp} className="mb-10">
           <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
-          <p className="mt-3 text-2xl font-[family-name:var(--font-display)] font-black text-foreground">
+          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
             <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
             {SKILLS.length} Commands
           </p>
