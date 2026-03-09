@@ -3,6 +3,12 @@
 Complete NEVER/ALWAYS/CONDITIONAL rules for non-game mini-app review.
 Violating any NEVER rule results in immediate rejection.
 
+## Contents
+
+- NEVER Rules (N1-N10) — violation = rejection
+- ALWAYS Rules (A1-A11) — mandatory requirements
+- CONDITIONAL Rules (C1-C5) — when specific features are used
+
 ## NEVER Rules (Violation = Rejection)
 
 ### N1: No Browser Dialogs

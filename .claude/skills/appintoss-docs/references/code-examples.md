@@ -4,13 +4,13 @@ Production-ready patterns extracted from reference implementations.
 
 ## Contents
 
-- Environment Detection Hook
-- Auth Login Hook
-- Rewarded Ad Hook
-- In-App Purchase Hook
-- Share Link Hook
-- Banner Ad Hook
-- App.tsx Intro Pattern
+- Environment Detection — `isTossApp()`, `getEnvironment()`
+- Auth Login Hook — `useAuth()` with mock fallback
+- Rewarded Ad Hook — `useRewardedAd()` with load/show lifecycle
+- In-App Purchase Hook — `useIAP()` with product fetch + purchase
+- Share Link Hook — `useShareLink()` with deep link generation
+- Banner Ad Hook — `useBannerAd()` with TossAds initialization
+- App.tsx Intro Pattern — correct intro-first flow
 
 ---
 
