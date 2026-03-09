@@ -159,3 +159,99 @@ import { someAPI } from '@apps-in-toss/web-framework';
 ## 출시 전 최종 검증
 
 코드 작성 완료 후 반드시 `/appintoss-nongame-launch-checklist` 스킬을 실행하여 11단계 체크리스트를 점검한다.
+
+## Harness Engineering Workflow (AI 에이전트 워크플로우)
+
+> 이 보일러플레이트는 **harness engineering**이 적용되어 있다.
+> AI 에이전트가 미니앱을 만들 때 반드시 이 워크플로우를 따라야 한다.
+> 핵심 원칙: **"나중에 검증이 아니라, 처음부터 반려당하지 않게 만든다."**
+
+### 7단계 워크플로우
+
+| 단계 | 이름 | 스킬 | 설명 |
+|------|------|------|------|
+| 1 | 요구사항 정의 | `ooo interview` (권장) 또는 대화 | 어떤 미니앱을 만들지 명확히 정의 |
+| 2 | 초기화 | `/harness-init` | granite.config.ts + 브랜딩 + viewport 등 반려방지 기본 세팅 자동 생성 |
+| 3 | SDK 블록 선택 | `/harness-init` 내 포함 | robin 예제에서 필요한 with-* 조합 선택 |
+| 4 | TDS 디자인 적용 | `/appintoss-tds-mobile` | 비게임 필수: TDS 디자인 시스템 적용 |
+| 5 | 점진적 구현 | `/harness-progress` | 세션당 1기능, feature_list.json 기반 추적 |
+| 6 | 기능별 검증 루프 | `/harness-validate` | NEVER/ALWAYS 규칙 대비 자동 위반 탐지 |
+| 7 | 출시 전 최종 심사 | `/appintoss-nongame-launch-checklist` | 11단계 최종 검수 |
+
+### 워크플로우 트리거
+
+AI 에이전트는 아래 키워드가 등장하면 해당 스킬을 **자동 호출**한다:
+
+| 키워드 | 스킬 |
+|--------|------|
+| "새 미니앱", "미니앱 만들기", "new mini-app", "harness", "워크플로우" | `/harness-workflow` (마스터) |
+| "초기화", "프로젝트 시작", "init", "세팅" | `/harness-init` |
+| "진행상황", "다음 기능", "progress", "next feature" | `/harness-progress` |
+| "검증", "반려 체크", "validate", "심사 점검" | `/harness-validate` |
+
+### 세션간 상태 관리 (Anthropic Harness 패턴)
+
+AI 에이전트는 **매 세션 시작 시** 반드시 다음을 수행한다:
+
+1. `claude-progress.txt` 읽기 → 이전 세션 작업 내용 파악
+2. `feature_list.json` 읽기 → 미완성 기능 확인
+3. git log 확인 → 최근 커밋 히스토리 파악
+4. **미완성 기능 하나만 선택**하여 작업
+5. 작업 완료 후 progress 업데이트 + 커밋
+
+### 3-레이어 Harness
+
+| 레이어 | 구성 | 필수 여부 |
+|--------|------|----------|
+| **기본** | CLAUDE.md + .claude/skills/ | 필수 (clone만으로 동작) |
+| **권장** | superpowers 플러그인 | 권장 (TDD, 코드리뷰, 체계적 계획) |
+| **권장** | ouroboros 플러그인 | 권장 (요구사항 인터뷰, 스펙 결정화) |
+
+플러그인 설치법은 `docs/harness-engineering-guide.md` 참조.
+
+<!-- ooo:START -->
+<!-- ooo:VERSION:0.14.0 -->
+# Ouroboros — Specification-First AI Development
+
+> Before telling AI what to build, define what should be built.
+> As Socrates asked 2,500 years ago — "What do you truly know?"
+> Ouroboros turns that question into an evolutionary AI workflow engine.
+
+Most AI coding fails at the input, not the output. Ouroboros fixes this by
+**exposing hidden assumptions before any code is written**.
+
+1. **Socratic Clarity** — Question until ambiguity ≤ 0.2
+2. **Ontological Precision** — Solve the root problem, not symptoms
+3. **Evolutionary Loops** — Each evaluation cycle feeds back into better specs
+
+```
+Interview → Seed → Execute → Evaluate
+    ↑                           ↓
+    └─── Evolutionary Loop ─────┘
+```
+
+## ooo Commands
+
+Each command loads its agent/MCP on-demand. Details in each skill file.
+
+| Command | Loads |
+|---------|-------|
+| `ooo` | — |
+| `ooo interview` | `ouroboros:socratic-interviewer` |
+| `ooo seed` | `ouroboros:seed-architect` |
+| `ooo run` | MCP required |
+| `ooo evolve` | MCP: `evolve_step` |
+| `ooo evaluate` | `ouroboros:evaluator` |
+| `ooo unstuck` | `ouroboros:{persona}` |
+| `ooo status` | MCP: `session_status` |
+| `ooo setup` | — |
+| `ooo help` | — |
+
+## Agents
+
+Loaded on-demand — not preloaded.
+
+**Core**: socratic-interviewer, ontologist, seed-architect, evaluator,
+wonder, reflect, advocate, contrarian, judge
+**Support**: hacker, simplifier, researcher, architect
+<!-- ooo:END -->
