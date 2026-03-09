@@ -313,9 +313,9 @@ const Index = () => {
               className="md:hidden absolute top-20 left-4 right-4 z-30 bg-primary rounded-2xl p-4 flex flex-col gap-3"
             >
               {[
-                { icon: <Search className="w-5 h-5" />, label: "Search" },
-                { icon: <ShoppingCart className="w-5 h-5" />, label: "Cart" },
-                { icon: <User className="w-5 h-5" />, label: "Contact" },
+                { icon: <Github className="w-5 h-5" />, label: "GitHub", href: "https://github.com/user/apps-in-toss-fullstack-templates" },
+                { icon: <Globe className="w-5 h-5" />, label: "개발자 센터", href: "https://developers-apps-in-toss.toss.im" },
+                { icon: <User className="w-5 h-5" />, label: "Contact", href: "https://www.threads.com/@robin_just_ship_it" },
               ].map((item) => (
                 <button key={item.label} className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
                   {item.icon} <span className="tracking-wide">{item.label}</span>
