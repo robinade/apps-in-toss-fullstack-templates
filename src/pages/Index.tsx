@@ -549,10 +549,10 @@ const Index = () => {
                       </div>
                       <div className="min-w-0">
                         <code className="text-xs font-bold text-foreground block truncate">/{sk.name}</code>
-                        <span className="text-[10px] text-muted-foreground/60">{sk.desc}</span>
+                        <span className="text-xs text-muted-foreground/60">{sk.desc}</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
+                    <span className="hidden sm:inline text-xs font-semibold text-muted-foreground bg-secondary px-2.5 py-1 rounded-full shrink-0 ml-2">{sk.trigger}</span>
                   </motion.div>
                 ))}
               </motion.div>
