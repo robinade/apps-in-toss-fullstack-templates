@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Search, ShoppingCart, User, Menu, X,
+  Github, Globe, User, Menu, X, Search,
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
   Megaphone, Share2, Camera, Navigation, Sparkles,
   ExternalLink, Zap, BookOpen, ChevronRight, ArrowRight,
@@ -282,12 +282,12 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="hidden md:flex items-center gap-3 -mt-1 -mr-2"
             >
-              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
-                <Search className="w-7 h-7" />
-              </button>
-              <button className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
-                <ShoppingCart className="w-7 h-7" />
-              </button>
+              <a href="https://github.com/user/apps-in-toss-fullstack-templates" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <Github className="w-7 h-7" />
+              </a>
+              <a href="https://developers-apps-in-toss.toss.im" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full w-[5.5rem] h-[5.5rem] flex items-center justify-center text-primary-foreground hover:bg-secondary transition-colors">
+                <Globe className="w-7 h-7" />
+              </a>
               <a href="https://www.threads.com/@robin_just_ship_it" target="_blank" rel="noopener noreferrer" className="bg-primary rounded-full flex items-center gap-4 pl-2 pr-7 text-primary-foreground h-[5.5rem] hover:opacity-80 transition-opacity">
                 <div className="w-14 h-14 rounded-full bg-primary-foreground flex items-center justify-center text-primary">
                   <User className="w-7 h-7" />
@@ -313,13 +313,13 @@ const Index = () => {
               className="md:hidden absolute top-20 left-4 right-4 z-30 bg-primary rounded-2xl p-4 flex flex-col gap-3"
             >
               {[
-                { icon: <Search className="w-5 h-5" />, label: "Search" },
-                { icon: <ShoppingCart className="w-5 h-5" />, label: "Cart" },
-                { icon: <User className="w-5 h-5" />, label: "Contact" },
+                { icon: <Github className="w-5 h-5" />, label: "GitHub", href: "https://github.com/user/apps-in-toss-fullstack-templates" },
+                { icon: <Globe className="w-5 h-5" />, label: "개발자 센터", href: "https://developers-apps-in-toss.toss.im" },
+                { icon: <User className="w-5 h-5" />, label: "Contact", href: "https://www.threads.com/@robin_just_ship_it" },
               ].map((item) => (
-                <button key={item.label} className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-primary-foreground py-3 px-4 hover:bg-primary-foreground/10 rounded-xl transition-colors">
                   {item.icon} <span className="tracking-wide">{item.label}</span>
-                </button>
+                </a>
               ))}
             </motion.div>
           )}
