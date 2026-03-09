@@ -262,7 +262,7 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-primary rounded-full w-12 h-12 md:w-[5.5rem] md:h-[5.5rem] flex items-center justify-center"
             >
-              <img src={logo} alt="Logo" className="h-4 md:h-6 object-contain invert" />
+              <img src={logo} alt="Logo" className="h-6 md:h-10 object-contain" />
             </motion.div>
 
             {/* Desktop nav */}
