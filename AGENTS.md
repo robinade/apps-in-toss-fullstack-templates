@@ -74,14 +74,18 @@ ait build            # Granite production build (granite.config.ts)
 ├── tailwind.config.ts               # Tailwind 설정
 ├── tsconfig.json                    # TypeScript 설정
 │
-├── .claude/skills/                  # AI 에이전트 스킬 (7개)
+├── .claude/skills/                  # AI 에이전트 스킬 (11개)
 │   ├── appintoss-login/
 │   ├── appintoss-rewarded-ad/
 │   ├── appintoss-banner-ad/
 │   ├── appintoss-promotion-reward/
 │   ├── appintoss-nongame-launch-checklist/
 │   ├── appintoss-smart-message/
-│   └── appintoss-tds-mobile/
+│   ├── appintoss-tds-mobile/
+│   ├── harness-workflow/               # 🆕 7단계 워크플로우 마스터
+│   ├── harness-init/                   # 🆕 반려방지 프로젝트 초기화
+│   ├── harness-progress/               # 🆕 점진적 구현 + progress 추적
+│   └── harness-validate/               # 🆕 NEVER/ALWAYS 자동 검증
 │
 └── apps-in-toss-examples-robin/     # SDK 레퍼런스 예제
     ├── _template/                   # 단일 기능 예제 템플릿
@@ -104,6 +108,10 @@ ait build            # Granite production build (granite.config.ts)
 | `/appintoss-nongame-launch-checklist` | 비게임 출시 전 최종 점검 체크리스트 | 출시, launch, 검수, checklist |
 | `/appintoss-smart-message` | 마케팅 푸시 메시지 소재 생성 | 푸시, 메시지, smart message |
 | `/appintoss-tds-mobile` | TDS 디자인 시스템 가이드 (비게임 필수) | TDS, 디자인, design system |
+| `/harness-workflow` | 7단계 harness 워크플로우 마스터 | 새 미니앱, 워크플로우, harness, workflow |
+| `/harness-init` | 반려방지 프로젝트 초기화 | 초기화, init, 프로젝트 시작, 세팅 |
+| `/harness-progress` | 점진적 구현 + 세션간 상태 추적 | 진행상황, progress, 다음 기능 |
+| `/harness-validate` | NEVER/ALWAYS 규칙 자동 검증 | 검증, validate, 반려 체크 |
 
 ## SDK Examples Catalog (레고 블록)
 
@@ -229,6 +237,9 @@ import { Button } from '@/components/ui/button'; // → src/components/ui/button
 ```
 
 ## New Mini-App Creation Workflow
+
+> **Harness Workflow 적용:** `/harness-workflow` 스킬을 호출하면 아래 단계를 자동으로 가이드한다.
+> 직접 단계별로 진행할 수도 있지만, harness 워크플로우를 통해 진행하면 반려방지가 자동 적용된다.
 
 AI 에이전트가 새 미니앱 요청을 받았을 때의 단계별 가이드:
 
