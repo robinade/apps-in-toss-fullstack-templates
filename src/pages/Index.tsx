@@ -364,7 +364,7 @@ const Index = () => {
             className="w-full h-full object-cover"
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260303_175853_da9ead9c-0e05-40d9-b9bd-06a9b5a73d27.mp4"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         </div>
 
         {/* UI content layer */}
