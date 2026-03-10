@@ -489,11 +489,15 @@ const Index = () => {
             className="absolute bottom-0 right-0 z-10"
           >
             <a
-              href="#blocks"
-              className="block bg-primary text-primary-foreground rounded-tl-[1.5rem] px-8 py-4 md:px-12 md:py-6 font-[family-name:var(--font-display)] text-base md:text-lg tracking-[0.2em] uppercase hover:bg-secondary transition-colors"
+              href="https://lovable.dev/projects/8089724b-d96f-48cf-ba63-65a52635d67b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 bg-primary text-primary-foreground rounded-tl-[1.5rem] px-8 py-4 md:px-12 md:py-6 font-[family-name:var(--font-display)] text-base md:text-lg tracking-[0.2em] uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300"
             >
-              <span className="md:hidden">Explore</span>
-              <span className="hidden md:inline">Explore Blocks</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-180 transition-transform duration-500">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+              </svg>
+              REMIX
             </a>
           </motion.div>
         </div>
