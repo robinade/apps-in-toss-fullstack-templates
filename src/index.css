@@ -148,6 +148,22 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
+
+  .heading-glow {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.12) 30%, hsl(0 0% 100% / 0.12) 70%, transparent);
+  }
+
+  .hero-fallback-grid {
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
 }
 
 @media (min-width: 768px) {
