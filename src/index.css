@@ -66,6 +66,16 @@
   50% { opacity: 1; }
 }
 
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 20px hsl(0 0% 100% / 0.1); }
+  50% { text-shadow: 0 0 40px hsl(0 0% 100% / 0.25), 0 0 80px hsl(0 0% 100% / 0.1); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
