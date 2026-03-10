@@ -346,10 +346,10 @@ const Index = () => {
       <motion.section
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale }}
-        className="relative h-screen overflow-hidden bg-background"
+        className="relative h-screen overflow-hidden"
       >
-        {/* Dark fallback grid pattern when video doesn't load */}
-        <div className="absolute inset-0 hero-fallback-grid" />
+        {/* White background matching Section Weaver */}
+        <div className="absolute inset-0" style={{ backgroundColor: 'hsl(0 0% 100%)' }} />
 
         {/* Masked video layer */}
         <div
