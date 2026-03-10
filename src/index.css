@@ -66,6 +66,16 @@
   50% { opacity: 1; }
 }
 
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 20px hsl(0 0% 100% / 0.1); }
+  50% { text-shadow: 0 0 40px hsl(0 0% 100% / 0.25), 0 0 80px hsl(0 0% 100% / 0.1); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
@@ -137,6 +147,22 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+  }
+
+  .heading-glow {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.12) 30%, hsl(0 0% 100% / 0.12) 70%, transparent);
+  }
+
+  .hero-fallback-grid {
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 }
 

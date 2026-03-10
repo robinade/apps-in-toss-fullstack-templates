@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   Github, Globe, User, Menu, X, Search,
   Blocks, Rocket, Puzzle, Layers, Monitor, ShieldCheck,
@@ -95,7 +95,6 @@ interface Skill {
 }
 
 const SKILLS: Skill[] = [
-  // SDK (9개)
   { name: "appintoss-login", trigger: "로그인", desc: "OAuth2, mTLS, JWT", cat: "sdk", icon: <LogIn className="h-3.5 w-3.5" /> },
   { name: "appintoss-rewarded-ad", trigger: "보상형 광고", desc: "AdMob 연동", cat: "sdk", icon: <BarChart3 className="h-3.5 w-3.5" /> },
   { name: "appintoss-banner-ad", trigger: "배너 광고", desc: "TossAds v2", cat: "sdk", icon: <Megaphone className="h-3.5 w-3.5" /> },
@@ -105,12 +104,10 @@ const SKILLS: Skill[] = [
   { name: "appintoss-tds-mobile", trigger: "TDS 디자인", desc: "비게임 필수", cat: "sdk", icon: <Palette className="h-3.5 w-3.5" /> },
   { name: "appintoss-coachmark-tutorial", trigger: "온보딩", desc: "코치마크 · 튜토리얼", cat: "sdk", icon: <Eye className="h-3.5 w-3.5" /> },
   { name: "appintoss-docs", trigger: "SDK 레퍼런스", desc: "전체 API 문서", cat: "sdk", icon: <BookOpen className="h-3.5 w-3.5" /> },
-  // Harness (4개)
   { name: "harness-workflow", trigger: "워크플로우", desc: "7단계 마스터", cat: "harness", icon: <Cog className="h-3.5 w-3.5" /> },
   { name: "harness-init", trigger: "초기화", desc: "반려방지 세팅", cat: "harness", icon: <PlayCircle className="h-3.5 w-3.5" /> },
   { name: "harness-progress", trigger: "진행상황", desc: "점진적 구현", cat: "harness", icon: <CheckCircle2 className="h-3.5 w-3.5" /> },
   { name: "harness-validate", trigger: "검증", desc: "NEVER/ALWAYS 체크", cat: "harness", icon: <ShieldCheck className="h-3.5 w-3.5" /> },
-  // Superpowers (10개)
   { name: "superpower-brainstorming", trigger: "브레인스토밍", desc: "아이디어 → 디자인", cat: "superpower", icon: <Brain className="h-3.5 w-3.5" /> },
   { name: "superpower-writing-plans", trigger: "계획 수립", desc: "구현 플랜 작성", cat: "superpower", icon: <FileText className="h-3.5 w-3.5" /> },
   { name: "superpower-executing-plans", trigger: "계획 실행", desc: "배치별 실행·리뷰", cat: "superpower", icon: <Rocket className="h-3.5 w-3.5" /> },
@@ -154,6 +151,11 @@ const scaleIn = {
   show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
 
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -161,6 +163,35 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
     <motion.section ref={ref} id={id} initial="hidden" animate={inView ? "show" : "hidden"} variants={stagger} className={className}>
       {children}
     </motion.section>
+  );
+}
+
+/* ─── Section Divider ─── */
+
+function SectionDivider() {
+  return <div className="section-divider mx-auto max-w-5xl" />;
+}
+
+/* ─── Section Label (editorial style) ─── */
+
+function SectionLabel({ label, count }: { label: string; count?: number | string }) {
+  return (
+    <motion.div variants={fadeUp} className="mb-10 flex items-end justify-between border-b border-border/50 pb-4">
+      <div>
+        <span className="block text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+          {label}
+        </span>
+        {count !== undefined && (
+          <span className="mt-2 block text-5xl sm:text-6xl font-[family-name:var(--font-display)] font-black text-foreground heading-glow">
+            {count}
+          </span>
+        )}
+      </div>
+      <div className="hidden sm:flex items-center gap-1.5 text-muted-foreground/30">
+        <div className="w-2 h-2 rounded-full bg-foreground/20 animate-[pulse-dot_2s_ease-in-out_infinite]" />
+        <span className="text-xs font-mono tracking-wider uppercase">scroll</span>
+      </div>
+    </motion.div>
   );
 }
 
@@ -205,12 +236,15 @@ function BlockCard({ block }: { block: SDKBlock }) {
   return (
     <motion.div
       variants={scaleIn}
-      whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 ${sizeClass} ${isLg ? "p-6" : "p-4"}`}
-      style={{ boxShadow: `0 0 30px ${c.color.replace("hsl", "hsla").replace(")", " / 0.1)")}` }}
+      whileHover={{
+        y: -6,
+        boxShadow: `0 8px 40px ${c.color.replace("hsl", "hsla").replace(")", " / 0.2)")}`,
+        transition: { duration: 0.25, ease: "easeOut" },
+      }}
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-foreground/20 ${sizeClass} ${isLg ? "p-6" : "p-4"}`}
     >
       {(isLg || isTall) && (
-        <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-15 blur-[40px]" style={{ background: c.color }} />
+        <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-15 blur-[40px] transition-opacity group-hover:opacity-25" style={{ background: c.color }} />
       )}
 
       <div className={`relative z-10 flex h-full flex-col ${isLg ? "justify-between" : ""}`}>
@@ -248,8 +282,12 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
   return (
     <motion.div
       variants={fadeUp}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:border-foreground/20"
+      whileHover={{
+        y: -6,
+        boxShadow: "0 8px 30px hsl(0 0% 100% / 0.06)",
+        transition: { duration: 0.25 },
+      }}
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-colors hover:border-foreground/20"
     >
       <div className="relative z-10">
         <span className="text-3xl">{scenario.emoji}</span>
@@ -268,16 +306,51 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
   );
 }
 
+/* ─── Mobile Stats Bar (replaces hidden SDK pins) ─── */
+
+function MobileStatsBar() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 0.6 }}
+      className="md:hidden absolute bottom-20 left-[3%] right-[3%] z-10 flex gap-2"
+    >
+      {[
+        { label: "SDK", value: "2.0.1" },
+        { label: "Blocks", value: "23" },
+        { label: "Scenarios", value: "6" },
+      ].map((stat) => (
+        <div key={stat.label} className="flex-1 bg-primary/80 backdrop-blur-sm rounded-xl px-3 py-2 text-center border border-foreground/10">
+          <p className="text-primary-foreground/60 text-[10px] font-mono uppercase tracking-wider">{stat.label}</p>
+          <p className="text-primary-foreground text-sm font-[family-name:var(--font-display)] font-bold">{stat.value}</p>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
 /* ─── Main Page ─── */
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
 
       {/* ▸ HERO — Full-screen video with masked background */}
-      <section className="relative h-screen overflow-hidden" style={{ backgroundColor: 'hsl(0 0% 100%)' }}>
+      <motion.section
+        ref={heroRef}
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="relative h-screen overflow-hidden bg-background"
+      >
+        {/* Dark fallback grid pattern when video doesn't load */}
+        <div className="absolute inset-0 hero-fallback-grid" />
+
         {/* Masked video layer */}
         <div
           className="absolute inset-0 md:ml-[4px] z-0 hero-mask"
@@ -291,7 +364,7 @@ const Index = () => {
             className="w-full h-full object-cover"
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260303_175853_da9ead9c-0e05-40d9-b9bd-06a9b5a73d27.mp4"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </div>
 
         {/* UI content layer */}
@@ -373,7 +446,10 @@ const Index = () => {
             direction="right"
           />
 
-          {/* Shop Now button — top right under nav (desktop) */}
+          {/* Mobile Stats Bar (replaces hidden SDK pins) */}
+          <MobileStatsBar />
+
+          {/* Docs button — top right under nav (desktop) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -398,7 +474,7 @@ const Index = () => {
             transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="absolute bottom-[8%] left-[3%] z-10"
           >
-            <h1 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight text-primary-foreground uppercase">
+            <h1 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight text-primary-foreground uppercase heading-glow">
               Build<br />
               Mini-Apps,<br />
               Like Lego.
@@ -421,16 +497,18 @@ const Index = () => {
             </a>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ▸ HARNESS WORKFLOW — 7 steps */}
       <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
-        <motion.h2 variants={fadeUp} className="mb-3 text-[10px] font-[family-name:var(--font-displaxsnt-black uppercase tracking-[0.3em] text-muted-foreground">
-          Harness Engineering
-        </motion.h2>
-        <motion.p variants={fadeUp} className="mb-10 text-lg text-muted-foreground max-w-2xl">
-          처음부터 심사 반려 없이 만드는 <span className="text-foreground font-semibold">7단계 구조화 워크플로우</span>
-        </motion.p>
+        <motion.div variants={slideInLeft} className="mb-10">
+          <h2 className="text-[10px] font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">
+            Harness Engineering
+          </h2>
+          <p className="mt-3 text-lg text-muted-foreground max-w-2xl">
+            처음부터 심사 반려 없이 만드는 <span className="text-foreground font-semibold">7단계 구조화 워크플로우</span>
+          </p>
+        </motion.div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {[
             { icon: <User className="h-5 w-5" />, title: "요구사항", num: "01" },
@@ -444,8 +522,8 @@ const Index = () => {
             <motion.div
               key={item.num}
               variants={fadeUp}
-              whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-foreground/20 ${idx === arr.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
+              whileHover={{ y: -4, boxShadow: "0 8px 24px hsl(0 0% 100% / 0.05)", transition: { duration: 0.2 } }}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition-colors hover:border-foreground/20 ${idx === arr.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
             >
               <span className="absolute top-1 right-2 font-[family-name:var(--font-display)] text-3xl font-black text-foreground/[0.04] select-none">
                 {item.num}
@@ -461,23 +539,19 @@ const Index = () => {
         </div>
       </Section>
 
+      <SectionDivider />
+
       {/* ▸ SDK BLOCK CATALOG */}
-      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8" id="blocks">
-        <motion.div variants={fadeUp} className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">SDK Block Catalog</h2>
-            <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground sm:text-4xl">
-              {SDK_BLOCKS.length} Blocks
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {(Object.keys(CAT) as Category[]).map((cat) => (
-              <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
-                <span className={`h-1.5 w-1.5 rounded-full ${CAT[cat].dot}`} />
-                <span className="text-muted-foreground">{CAT[cat].label}</span>
-              </span>
-            ))}
-          </div>
+      <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8" id="blocks">
+        <SectionLabel label="SDK Block Catalog" count={`${SDK_BLOCKS.length} Blocks`} />
+
+        <motion.div variants={fadeUp} className="mb-6 flex flex-wrap gap-2">
+          {(Object.keys(CAT) as Category[]).map((cat) => (
+            <span key={cat} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold border border-border bg-card">
+              <span className={`h-1.5 w-1.5 rounded-full ${CAT[cat].dot}`} />
+              <span className="text-muted-foreground">{CAT[cat].label}</span>
+            </span>
+          ))}
         </motion.div>
 
         <motion.div
@@ -490,14 +564,11 @@ const Index = () => {
         </motion.div>
       </Section>
 
+      <SectionDivider />
+
       {/* ▸ SCENARIOS */}
-      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-6">
-          <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">Fullstack Scenarios</h2>
-          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
-            {SCENARIOS.length} Recipes
-          </p>
-        </motion.div>
+      <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
+        <SectionLabel label="Fullstack Scenarios" count={`${SCENARIOS.length} Recipes`} />
         <motion.div variants={stagger} className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {SCENARIOS.map((s) => (
             <ScenarioCard key={s.name} scenario={s} />
@@ -505,18 +576,14 @@ const Index = () => {
         </motion.div>
       </Section>
 
+      <SectionDivider />
+
       {/* ▸ AI SKILLS */}
-      <Section className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-        <motion.div variants={fadeUp} className="mb-6">
-          <h2 className="text-xs font-[family-name:var(--font-display)] font-black uppercase tracking-[0.3em] text-muted-foreground">AI Skills</h2>
-          <p className="mt-3 text-3xl font-[family-name:var(--font-display)] font-black text-foreground">
-            <Sparkles className="mr-2 inline h-5 w-5 text-foreground/50" />
-            {SKILLS.length} Commands
-          </p>
-        </motion.div>
+      <Section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
+        <SectionLabel label="AI Skills" count={`${SKILLS.length} Commands`} />
 
         {/* Category legend */}
-        <motion.div variants={fadeUp} className="mb-6 flex flex-wrap gap-2">
+        <motion.div variants={fadeUp} className="mb-8 flex flex-wrap gap-2">
           {(Object.keys(SKILL_CAT) as SkillCategory[]).map((cat) => {
             const c = SKILL_CAT[cat];
             const count = SKILLS.filter((s) => s.cat === cat).length;
@@ -535,8 +602,8 @@ const Index = () => {
           const c = SKILL_CAT[cat];
           const catSkills = SKILLS.filter((s) => s.cat === cat);
           return (
-            <div key={cat} className="mb-5 last:mb-0">
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
+            <div key={cat} className="mb-6 last:mb-0">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-1.5" style={{ color: c.color }}>
                 <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`} />
                 {c.label}
               </p>
